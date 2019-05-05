@@ -101,15 +101,6 @@ main()  /* Main function. */
     return 0;
 }
 
-void jaime(){
-yo soy jaime
-}
-
-void daniela(){
-    int x;
-}
-
-
 void initialize(void)  /* Initialization function. */
 {
     /* Initialize the simulation clock. */
