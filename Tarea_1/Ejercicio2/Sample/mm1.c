@@ -8,13 +8,13 @@
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_events, num_in_q, server_status;
+int   next_event_type, num_events, num_in_q, server_status, numero_fin_r;
 float area_server_status,sim_time;
 
 FILE  *infile, *outfile;
 
 ///Creados nuevos
-float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[Q_LIMIT + 1];
+float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[20][Q_LIMIT + 1];
 int x,y;
 
 
@@ -138,9 +138,9 @@ void timing(void)  /* Timing function. */
     /* Determine the event type of the next event to occur. */
 
     for (i = 1; i <= num_events; ++i)
-        if (time_next_event[i] < min_time_next_event)
+        if (time_next_event[1][i] < min_time_next_event)
         {
-            min_time_next_event = time_next_event[i];
+            min_time_next_event = time_next_event[1][i];
             next_event_type     = i;
         }
 
