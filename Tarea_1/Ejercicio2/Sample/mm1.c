@@ -4,16 +4,19 @@
 #include <math.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
 
-#define Q_LIMIT 10000  /* Limit on queue length. */
+#define Q_LIMIT 100000  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_custs_delayed, num_delays_required, num_events,
-      num_in_q, server_status;
-float area_num_in_q, area_server_status, mean_interarrival, mean_service,
-      sim_time, time_arrival[Q_LIMIT + 1], time_last_event, time_next_event[3],
-      total_of_delays;
+int   next_event_type, num_events, num_in_q, server_status;
+float area_server_status,sim_time;
+
 FILE  *infile, *outfile;
+
+///Creados nuevos
+float mean_descarga,var_descarga,velocidad_cinta,time_next_event[Q_LIMIT + 1];
+int x,y;
+
 
 void  initialize(void);
 void  timing(void);
@@ -34,27 +37,24 @@ main()  /* Main function. */
 
     outfile = fopen("mm1.out", "w");
 
-    fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
+    fscanf(infile, "%f %f %f %d", &mean_descarga, &var_descarga,&velocidad_cinta,
            &num_delays_required);
-
-    mean_interarrival =  mean_interarrival/60;
 
     for(k = 0;k<20;k++){
     fprintf(outfile,"\n------------------------\n");
     fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
     /* Specify the number of events for the timing function. */
 
-    num_events = 2;
+    num_events = 4;
 
     /* Read input parameters. */
-
 
     /* Write report heading and input parameters. */
 
     fprintf(outfile, "Single-server queueing system\n\n");
-    fprintf(outfile, "Mean interarrival time%11.3f minutes\n\n",
-            mean_interarrival);
-    fprintf(outfile, "Mean service time %16.3f minutes\n\n", mean_service);
+    fprintf(outfile, "Mean tiempo medio de descarga %11.3f minutes\n\n",
+            mean_descarga);
+    fprintf(outfile, "Tiempo de descarga %16.3f minutos\n\n", var_descarga);
     fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
 
 
@@ -123,7 +123,7 @@ void initialize(void)  /* Initialization function. */
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
-    time_next_event[1] = sim_time + poisson(mean_interarrival);
+    time_next_event[1] = sim_time + poisson(mean_descarga);
     time_next_event[2] = 1.0e+30;
 }
 
@@ -157,102 +157,6 @@ void timing(void)  /* Timing function. */
     /* The event list is not empty, so advance the simulation clock. */
 
     sim_time = min_time_next_event;
-}
-
-
-void arrive(void)  /* Arrival event function. */
-{
-    float delay;
-
-    /* Schedule next arrival. */
-
-    time_next_event[1] = sim_time + poisson(mean_interarrival);
-
-    /* Check to see whether server is busy. */
-
-    if (server_status == BUSY)
-    {
-        /* Server is busy, so increment number of customers in queue. */
-
-        ++num_in_q;
-
-        /* Check to see whether an overflow condition exists. */
-
-        if (num_in_q > Q_LIMIT)
-        {
-            /* The queue has overflowed, so stop the simulation. */
-
-            fprintf(outfile, "\nOverflow of the array time_arrival at");
-            fprintf(outfile, " time %f", sim_time);
-            exit(2);
-        }
-
-        /* There is still room in the queue, so store the time of arrival of the
-           arriving customer at the (new) end of time_arrival. */
-
-        time_arrival[num_in_q] = sim_time;
-    }
-
-    else
-    {
-        /* Server is idle, so arriving customer has a delay of zero.  (The
-           following two statements are for program clarity and do not affect
-           the results of the simulation.) */
-
-        delay            = 0.0;
-        total_of_delays += delay;
-
-        /* Increment the number of customers delayed, and make server busy. */
-
-        ++num_custs_delayed;
-        server_status = BUSY;
-
-        /* Schedule a departure (service completion). */
-
-        time_next_event[2] = sim_time + expon(mean_service);
-    }
-}
-
-
-void depart(void)  /* Departure event function. */
-{
-    int   i;
-    float delay;
-
-    /* Check to see whether the queue is empty. */
-
-    if (num_in_q == 0)
-    {
-        /* The queue is empty so make the server idle and eliminate the
-           departure (service completion) event from consideration. */
-
-        server_status      = IDLE;
-        time_next_event[2] = 1.0e+30;
-    }
-
-    else
-    {
-        /* The queue is nonempty, so decrement the number of customers in
-           queue. */
-
-        --num_in_q;
-
-        /* Compute the delay of the customer who is beginning service and update
-           the total delay accumulator. */
-
-        delay            = sim_time - time_arrival[1];
-        total_of_delays += delay;
-
-        /* Increment the number of customers delayed, and schedule departure. */
-
-        ++num_custs_delayed;
-        time_next_event[2] = sim_time + expon(mean_service);
-
-        /* Move each customer in queue (if any) up one place. */
-
-        for (i = 1; i <= num_in_q; ++i)
-            time_arrival[i] = time_arrival[i + 1];
-    }
 }
 
 
@@ -290,14 +194,27 @@ void update_time_avg_stats(void)  /* Update area accumulators for time-average
     area_server_status += server_status * time_since_last_event;
 }
 
+float generado_normal_1(float mean, float var){
 
-float expon(float mean)  /* Exponential variate generation function. */
-{
-    /* Return an exponential random variate with mean "mean". */
-    return -mean * log(lcgrand(2));
-}
+    float w;
+    float u1 =lcgrand(1);
+    float u2 =lcgrand(1);
 
-float poisson(float beta){
-    float lambda = 1/beta;
-    return -lambda * log(lcgrand(2));
-}
+    float v1= 2*u1-1;
+    float v2= 2*u2-1;
+    fprintf(outfile_1, "%f\n",v1);
+    w= pow(v1,2)+ pow(v2,2);
+    while(w>1){
+
+        u1 =u2;
+        u2 =lcgrand(1);
+        v1= 2*u1-1;
+        v2= 2*u2-1;
+        w= pow(v1,2)+ pow(v2,2);
+        w = pow(v1,2)+ pow(v2,2);
+
+    }
+
+    float y = sqrt((-2*log(w))/w);
+    return mean + (var*v1*y);
+};

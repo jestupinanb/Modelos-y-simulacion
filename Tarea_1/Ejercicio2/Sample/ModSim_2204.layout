@@ -9,7 +9,7 @@
 	</File>
 	<File name="mm1.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2499" topLine="15" />
+			<Cursor1 position="8046" topLine="46" />
 		</Cursor>
 		<Folding>
 			<Collapse line="29" />
@@ -21,8 +21,6 @@
 			<Collapse line="217" />
 			<Collapse line="259" />
 			<Collapse line="275" />
-			<Collapse line="294" />
-			<Collapse line="299" />
 		</Folding>
 	</File>
 	<File name="lcgrand.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">

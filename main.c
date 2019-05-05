@@ -5,7 +5,7 @@
 #include <math.h>
 
 FILE *infile, *outfile, *outfile_1;
-float generado_normal_1(){
+float generado_normal_1(float mean, float var){
 
     float w;
     float u1 =lcgrand(1);
@@ -31,7 +31,7 @@ float generado_normal_1(){
     }
 
     float y = sqrt((-2*log(w))/w);
-    return v1*y;
+    return mean + (var*v1*y);
 };
 
 int main(){
@@ -42,7 +42,7 @@ int main(){
 
 
     for(int i =0 ; i<100; i++){
-        float normal = 15 + (3*generado_normal_1());
+        float normal = generado_normal_1(15,3);
          fprintf(outfile, "%f\n",normal);
 
     }
