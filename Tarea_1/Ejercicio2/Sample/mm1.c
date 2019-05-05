@@ -14,7 +14,7 @@ float area_server_status,sim_time;
 FILE  *infile, *outfile;
 
 ///Creados nuevos
-float mean_descarga,var_descarga,velocidad_cinta,time_next_event[Q_LIMIT + 1];
+float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[Q_LIMIT + 1];
 int x,y;
 
 
@@ -37,7 +37,7 @@ main()  /* Main function. */
 
     outfile = fopen("mm1.out", "w");
 
-    fscanf(infile, "%f %f %f %d", &mean_descarga, &var_descarga,&velocidad_cinta,
+    fscanf(infile, "%f %f %f %d", &mean_descarga, &desv_e_descarga,&velocidad_cinta,
            &num_delays_required);
 
     for(k = 0;k<20;k++){
@@ -52,10 +52,10 @@ main()  /* Main function. */
     /* Write report heading and input parameters. */
 
     fprintf(outfile, "Single-server queueing system\n\n");
-    fprintf(outfile, "Tiempo medio de descarga %11.3f minutes\n\n",
+    fprintf(outfile, "Tiempo medio de descarga %11.3f minutos\n\n",
             mean_descarga);
 
-    fprintf(outfile, "Tiempo de descarga %16.3f minutos\n\n", var_descarga);
+    fprintf(outfile, "Tiempo var de descarga %16.3f minutos\n\n", desv_e_descarga);
     fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
 
 
