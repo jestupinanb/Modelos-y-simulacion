@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1557069514 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\sample\lcgrand.c
+
+1557092115 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\sample\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1557069514 c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\sample\lcgrand.h
+	"lcgrand.h"
+
