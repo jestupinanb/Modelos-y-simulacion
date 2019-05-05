@@ -184,6 +184,22 @@ void report(void)  /* Report generator function. */
 }
 
 
+void inicio_recolecion (void)
+{
+    if(server_status==BUSY){
+            /**agendar evento fin de recoleccion de la caja*/
+
+    }else{
+        server_status== BUSY;
+        x++;
+
+        /** se agenda el evento server_idle*/
+
+    }
+
+}
+
+
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
 {
