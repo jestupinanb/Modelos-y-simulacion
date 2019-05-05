@@ -54,6 +54,7 @@ main()  /* Main function. */
     fprintf(outfile, "Single-server queueing system\n\n");
     fprintf(outfile, "Mean tiempo medio de descarga %11.3f minutes\n\n",
             mean_descarga);
+
     fprintf(outfile, "Tiempo de descarga %16.3f minutos\n\n", var_descarga);
     fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
 
