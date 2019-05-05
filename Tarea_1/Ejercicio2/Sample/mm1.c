@@ -55,8 +55,8 @@ main()  /* Main function. */
     fprintf(outfile, "Tiempo medio de descarga %11.3f minutos\n\n",
             mean_descarga);
 
-    fprintf(outfile, "Tiempo var de descarga %16.3f minutos\n\n", desv_e_descarga);
-    fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
+    fprintf(outfile, "Desviacion estandar de descarga %16.3f minutos\n\n", desv_e_descarga);
+    fprintf(outfile, "Numero de cajas %14d\n\n", num_delays_required);
 
 
 
@@ -66,7 +66,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (num_custs_delayed < num_delays_required)
+    while (x+y <= 1000)
     {
         /* Determine the next event. */
 
@@ -99,6 +99,10 @@ main()  /* Main function. */
     fclose(outfile);
 
     return 0;
+}
+
+void daniela(){
+
 }
 
 
