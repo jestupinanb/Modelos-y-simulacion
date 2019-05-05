@@ -54,10 +54,10 @@ int dequeue (int id){
       return actual->id;
     } else {
 
-      actual = fina;
+       actual = inicio;
      // printf("%d ", fina->id);
 
-     fina= fina->anterior;
+     inicio= inicio->siguiente;
      return actual->id;
     }
   }
