@@ -106,7 +106,7 @@ void jaime(){
 }
 
 void daniela(){
-
+    int x;
 }
 
 
