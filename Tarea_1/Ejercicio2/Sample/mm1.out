@@ -1,0 +1,441 @@
+
+------------------------
+
+
+Simulacion numero 0
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.272 minutes
+
+Average number in queue     2.336
+
+Server utilization          0.757
+
+Time simulation ended  396992.844 minutes
+------------------------
+
+
+Simulacion numero 1
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.971 minutes
+
+Average number in queue     2.245
+
+Server utilization          0.752
+
+Time simulation ended  399579.188 minutes
+------------------------
+
+
+Simulacion numero 2
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.759 minutes
+
+Average number in queue     2.186
+
+Server utilization          0.750
+
+Time simulation ended  400704.125 minutes
+------------------------
+
+
+Simulacion numero 3
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.969 minutes
+
+Average number in queue     2.238
+
+Server utilization          0.751
+
+Time simulation ended  400703.875 minutes
+------------------------
+
+
+Simulacion numero 4
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.131 minutes
+
+Average number in queue     2.288
+
+Server utilization          0.749
+
+Time simulation ended  399053.688 minutes
+------------------------
+
+
+Simulacion numero 5
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.124 minutes
+
+Average number in queue     2.286
+
+Server utilization          0.754
+
+Time simulation ended  399022.125 minutes
+------------------------
+
+
+Simulacion numero 6
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.575 minutes
+
+Average number in queue     2.136
+
+Server utilization          0.747
+
+Time simulation ended  401434.531 minutes
+------------------------
+
+
+Simulacion numero 7
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.037 minutes
+
+Average number in queue     2.256
+
+Server utilization          0.751
+
+Time simulation ended  400611.156 minutes
+------------------------
+
+
+Simulacion numero 8
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.113 minutes
+
+Average number in queue     2.285
+
+Server utilization          0.749
+
+Time simulation ended  398893.469 minutes
+------------------------
+
+
+Simulacion numero 9
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.867 minutes
+
+Average number in queue     2.203
+
+Server utilization          0.747
+
+Time simulation ended  402427.313 minutes
+------------------------
+
+
+Simulacion numero 10
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.699 minutes
+
+Average number in queue     2.178
+
+Server utilization          0.748
+
+Time simulation ended  399286.344 minutes
+------------------------
+
+
+Simulacion numero 11
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.862 minutes
+
+Average number in queue     2.208
+
+Server utilization          0.747
+
+Time simulation ended  401309.469 minutes
+------------------------
+
+
+Simulacion numero 12
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.369 minutes
+
+Average number in queue     2.346
+
+Server utilization          0.754
+
+Time simulation ended  399312.906 minutes
+------------------------
+
+
+Simulacion numero 13
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.963 minutes
+
+Average number in queue     2.244
+
+Server utilization          0.752
+
+Time simulation ended  399395.750 minutes
+------------------------
+
+
+Simulacion numero 14
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.877 minutes
+
+Average number in queue     2.211
+
+Server utilization          0.744
+
+Time simulation ended  401578.344 minutes
+------------------------
+
+
+Simulacion numero 15
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.957 minutes
+
+Average number in queue     2.243
+
+Server utilization          0.751
+
+Time simulation ended  399315.094 minutes
+------------------------
+
+
+Simulacion numero 16
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.230 minutes
+
+Average number in queue     2.317
+
+Server utilization          0.753
+
+Time simulation ended  398410.813 minutes
+------------------------
+
+
+Simulacion numero 17
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.172 minutes
+
+Average number in queue     2.293
+
+Server utilization          0.751
+
+Time simulation ended  400096.094 minutes
+------------------------
+
+
+Simulacion numero 18
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      9.004 minutes
+
+Average number in queue     2.260
+
+Server utilization          0.751
+
+Time simulation ended  398463.531 minutes
+------------------------
+
+
+Simulacion numero 19
+
+Single-server queueing system
+
+Mean interarrival time      0.250 minutes
+
+Mean service time            3.000 minutes
+
+Number of customers        100000
+
+
+
+Average delay in queue      8.727 minutes
+
+Average number in queue     2.182
+
+Server utilization          0.746
+
+Time simulation ended  399904.656 minutes
