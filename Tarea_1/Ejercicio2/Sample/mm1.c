@@ -52,7 +52,7 @@ main()  /* Main function. */
     /* Write report heading and input parameters. */
 
     fprintf(outfile, "Single-server queueing system\n\n");
-    fprintf(outfile, "Media tiempo de descarga %11.3f minutes\n\n",
+    fprintf(outfile, "Tiempo medio de descarga %11.3f minutes\n\n",
             mean_descarga);
 
     fprintf(outfile, "Tiempo de descarga %16.3f minutos\n\n", var_descarga);
@@ -101,6 +101,12 @@ main()  /* Main function. */
     return 0;
 }
 
+
+void Jaime(){
+}
+
+void Valentina(){
+}
 
 void initialize(void)  /* Initialization function. */
 {
