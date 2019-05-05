@@ -86,6 +86,8 @@ main()  /* Main function. */
             case 2:
                 depart();
                 break;
+            case 3:
+
         }
     }
 
@@ -178,20 +180,7 @@ void report(void)  /* Report generator function. */
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
 {
-    float time_since_last_event;
 
-    /* Compute time since last event, and update last-event-time marker. */
-
-    time_since_last_event = sim_time - time_last_event;
-    time_last_event       = sim_time;
-
-    /* Update area under number-in-queue function. */
-
-    area_num_in_q      += num_in_q * time_since_last_event;
-
-    /* Update area under server-busy indicator function. */
-
-    area_server_status += server_status * time_since_last_event;
 }
 
 float generado_normal_1(float mean, float var){
