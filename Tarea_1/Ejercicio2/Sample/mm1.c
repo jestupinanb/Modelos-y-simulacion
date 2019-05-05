@@ -107,7 +107,7 @@ void Jaime(){
 }
 
 void Valentina(){
-    hola bb
+    brrrrr
 }
 
 void initialize(void)  /* Initialization function. */
