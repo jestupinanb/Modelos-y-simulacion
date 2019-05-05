@@ -33,7 +33,10 @@ main()  /* Main function. */
     infile  = fopen("mm1.in",  "r");
 
     outfile = fopen("mm1.out", "w");
+      fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
+           &num_delays_required);
 
+    mean_interarrival =  60/mean_interarrival;
     for(k = 0;k<20;k++){
     //fprintf(outfile,"\n------------------------\n");
     //fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
@@ -43,11 +46,7 @@ main()  /* Main function. */
 
     /* Read input parameters. */
 
-    fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
-           &num_delays_required);
-
-    mean_interarrival =  60/mean_interarrival;
-
+    
     /* Write report heading and input parameters. */
 
     //fprintf(outfile, "Single-server queueing system\n\n");
