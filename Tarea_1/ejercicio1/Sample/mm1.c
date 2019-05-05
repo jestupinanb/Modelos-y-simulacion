@@ -33,27 +33,29 @@ main()  /* Main function. */
     infile  = fopen("mm1.in",  "r");
 
     outfile = fopen("mm1.out", "w");
-      fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
+
+    fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
            &num_delays_required);
 
-    mean_interarrival =  60/mean_interarrival;
+    mean_interarrival =  mean_interarrival/60;
+
     for(k = 0;k<20;k++){
-    //fprintf(outfile,"\n------------------------\n");
-    //fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
+    fprintf(outfile,"\n------------------------\n");
+    fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
     /* Specify the number of events for the timing function. */
 
     num_events = 2;
 
     /* Read input parameters. */
 
-    
+
     /* Write report heading and input parameters. */
 
-    //fprintf(outfile, "Single-server queueing system\n\n");
-    //fprintf(outfile, "Mean interarrival time%11.3f minutes\n\n",
-            //mean_interarrival);
-    //fprintf(outfile, "Mean service time %16.3f minutes\n\n", mean_service);
-    //fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
+    fprintf(outfile, "Single-server queueing system\n\n");
+    fprintf(outfile, "Mean interarrival time%11.3f minutes\n\n",
+            mean_interarrival);
+    fprintf(outfile, "Mean service time %16.3f minutes\n\n", mean_service);
+    fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
 
 
 
@@ -258,9 +260,6 @@ void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
 
-    fprintf(outfile, "%11.3f\n",
-            total_of_delays / num_custs_delayed);
-    /*
     fprintf(outfile, "\n\nAverage delay in queue%11.3f minutes\n\n",
             total_of_delays / num_custs_delayed);
     fprintf(outfile, "Average number in queue%10.3f\n\n",
@@ -268,7 +267,7 @@ void report(void)  /* Report generator function. */
     fprintf(outfile, "Server utilization%15.3f\n\n",
             area_server_status / sim_time);
     fprintf(outfile, "Time simulation ended%12.3f minutes", sim_time);
-    */
+
 }
 
 
@@ -299,6 +298,6 @@ float expon(float mean)  /* Exponential variate generation function. */
 }
 
 float poisson(float beta){
-    float lambda = beta;
+    float lambda = 1/beta;
     return -lambda * log(lcgrand(2));
 }
