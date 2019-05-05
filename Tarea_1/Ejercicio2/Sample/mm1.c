@@ -8,7 +8,7 @@
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_events, num_in_q, server_status, numero_fin_r;
+int   next_event_type, num_events, num_in_q, server_status, numero_fin_re;
 float area_server_status,sim_time;
 
 FILE  *infile, *outfile;
