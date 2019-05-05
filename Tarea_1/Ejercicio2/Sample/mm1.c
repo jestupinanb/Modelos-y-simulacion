@@ -102,14 +102,6 @@ main()  /* Main function. */
 }
 
 
-void Jaime(){
-    dsakjkjl
-}
-
-void Valentina(){
-    brrrrr
-}
-
 void initialize(void)  /* Initialization function. */
 {
     /* Initialize the simulation clock. */
