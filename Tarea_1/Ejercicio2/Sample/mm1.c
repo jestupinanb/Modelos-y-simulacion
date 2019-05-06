@@ -130,8 +130,8 @@ void initialize(void)  /* Initialization function. */
     area_server_status = 0.0;
 
 
-    numero_ini_re = 1;
-    numero_fin_re = 1;
+    numero_ini_re = 0;
+    numero_fin_re = 0;
 
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
@@ -191,9 +191,9 @@ void report(void)  /* Report generator function. */
 }
 
 void arrival(void){
-    time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
-    time_next_event[2][numero_ini_re]= Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
     numero_ini_re++;
+    time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
+    time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
 }
 
 void inicio_recoleccion (void)
@@ -201,12 +201,12 @@ void inicio_recoleccion (void)
     if(server_status==BUSY){
 
             /**agendar evento fin de recoleccion de la caja*/
-        time_next_event[4][numero_fin_re++] = sim_time + (Distancia_cajas/velocidad_cinta);
+        time_next_event[4][++numero_fin_re] = sim_time + (Distancia_cajas/velocidad_cinta);
 
     }else{
-        server_status== BUSY;
+        server_status= BUSY;
         x++;
-        for(int i =0 ; i <numero_ini_re;i++){
+        for(int i =1 ; i <=numero_ini_re;i++){
             time_next_event[2][i] = time_next_event[4][i+1];
 
         }
