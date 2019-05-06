@@ -290,18 +290,18 @@ void depart_1(void)  /* Departure event function. */ ///DEPARTURE SERVIDOR 1  EV
         /* Compute the delay of the customer who is beginning service and update
            the total delay accumulator. */
 
-        delay            = sim_time - time_arrival[1];
+        delay            = sim_time - time_arrival_1[1];
         total_of_delays_1 += delay;
 
         /* Increment the number of customers delayed, and schedule departure. */
 
         ++num_custs_delayed_1;
-        time_next_event[2] = sim_time + expon(mean_service);
+        time_next_event[2] = sim_time + expon(mean_service_1);
 
         /* Move each customer in queue (if any) up one place. */
 
         for (i = 1; i <= num_in_q_1; ++i)
-            time_arrival[i] = time_arrival[i + 1];
+            time_arrival_1[i] = time_arrival_1[i + 1];
     }
 }
 
@@ -332,18 +332,18 @@ void depart_2(void)  /* Departure event function. */ ///DEPARTURE SERVIDOR 2  EV
         /* Compute the delay of the customer who is beginning service and update
            the total delay accumulator. */
 
-        delay            = sim_time - time_arrival[1];
+        delay            = sim_time - time_arrival_2[1];
         total_of_delays_2 += delay;
 
         /* Increment the number of customers delayed, and schedule departure. */
 
         ++num_custs_delayed_2;
-        time_next_event[3] = sim_time + expon(mean_service);
+        time_next_event[3] = sim_time + expon(mean_service_2);
 
         /* Move each customer in queue (if any) up one place. */
 
         for (i = 1; i <= num_in_q_2; ++i)
-            time_arrival[i] = time_arrival[i + 1];
+            time_arrival_2[i] = time_arrival_2[i + 1];
     }
 }
 
