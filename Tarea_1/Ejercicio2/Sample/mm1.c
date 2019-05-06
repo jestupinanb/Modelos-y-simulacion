@@ -206,14 +206,15 @@ void inicio_recoleccion (void)
     }else{
         server_status= BUSY;
         x++;
+
+        /** se agenda el evento server_idle*/
+            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+    }
         for(int i =1 ; i <=numero_ini_re;i++){
             time_next_event[2][i] = time_next_event[4][i+1];
 
         }
         numero_ini_re--;
-        /** se agenda el evento server_idle*/
-            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
-    }
 
 }
 
@@ -225,7 +226,24 @@ void server_idle(void){
 }
 
 void fin_recoleccion(void){
+    if(server_status==IDLE){
+            server_status= BUSY;
+            x++;
 
+        time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+
+    }else{
+       // server_status= BUSY;
+        y++;
+
+        /** se agenda el evento server_idle*/
+            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+    }
+    for(int i =1 ; i <=numero_fin_re;i++){
+            time_next_event[4][i] = time_next_event[4][i+1];
+
+        }
+        numero_fin_re--;
 }
 
 
