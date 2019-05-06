@@ -242,7 +242,7 @@ void fin_recoleccion(void){
         y++;
 
         /** se agenda el evento server_idle*/
-            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+
     }
     for(int i =1 ; i <=numero_fin_re;i++){
             time_next_event[4][i] = time_next_event[4][i+1];
