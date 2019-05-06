@@ -189,7 +189,7 @@ void arrive(void)  /* Arrival event function. */
 
         /* Check to see whether an overflow condition exists. */
 
-        if (num_in_q > Q_LIMIT)
+        if (num_in_q_2 > Q_LIMIT)
         {
             /* The queue has overflowed, so stop the simulation. */
 
