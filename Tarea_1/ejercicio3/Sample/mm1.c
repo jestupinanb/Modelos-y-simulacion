@@ -10,7 +10,7 @@
 
 int   next_event_type, num_custs_delayed_1, num_custs_delayed_2, num_delays_required, num_events,
       num_in_q_1,num_in_q_2, server_status_1,server_status_2;
-float area_num_in_q_1,area_num_in_q_2, area_server_status_1,area_server_status_2, mean_interarrival, mean_service_1, mean_service_2
+float area_num_in_q_1,area_num_in_q_2, area_server_status_1,area_server_status_2, mean_interarrival, mean_service_1, mean_service_2,
       sim_time, time_arrival_1[11],time_arrival_2[Q_LIMIT + 1], time_last_event, time_next_event[4],
       total_of_delays_1,total_of_delays_2;
 FILE  *infile, *outfile;
@@ -109,22 +109,29 @@ void initialize(void)  /* Initialization function. */
 
     /* Initialize the state variables. */
 
-    server_status   = IDLE;
-    num_in_q        = 0;
+    server_status_1   = IDLE;
+    server_status_2   = IDLE;
+    num_in_q_1        = 0;
+    num_in_q_2        = 0;
     time_last_event = 0.0;
 
     /* Initialize the statistical counters. */
 
-    num_custs_delayed  = 0;
-    total_of_delays    = 0.0;
-    area_num_in_q      = 0.0;
-    area_server_status = 0.0;
+    num_custs_delayed_1  = 0;
+    num_custs_delayed_2  = 0;
+    total_of_delays_1    = 0.0;
+    total_of_delays_2    = 0.0;
+    area_num_in_q_1      = 0.0;
+    area_num_in_q_2      = 0.0;
+    area_server_status_1 = 0.0;
+    area_server_status_2 = 0.0;
 
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
     time_next_event[1] = sim_time + poisson(mean_interarrival);
     time_next_event[2] = 1.0e+30;
+    time_next_event[3] = 1.0e+30;
 }
 
 
