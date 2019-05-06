@@ -208,7 +208,7 @@ void arrive(void)  /* Arrival event function. */
 
         /* Schedule a departure (service completion). */
 
-        //time_next_event[2] = sim_time + expon(mean_service);
+        time_next_event[3] = sim_time + expon(mean_service_2);
 
 
       }
@@ -241,12 +241,12 @@ void arrive(void)  /* Arrival event function. */
 
         /* Schedule a departure (service completion). */
 
-       // time_next_event[2] = sim_time + expon(mean_service);
+        time_next_event[2] = sim_time + expon(mean_service_1);
 
 
       }
     }
-    time_next_event[2] = sim_time + expon(mean_service);
+
 }
   /* Server is busy, so increment number of customers in queue. */
 
