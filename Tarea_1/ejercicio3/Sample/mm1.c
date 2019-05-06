@@ -348,13 +348,19 @@ void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
 
-    fprintf(outfile, "\n\nAverage delay in queue%11.3f minutes\n\n",
-            total_of_delays / num_custs_delayed);
-    fprintf(outfile, "Average number in queue%10.3f\n\n",
-            area_num_in_q / sim_time);
-    fprintf(outfile, "Server utilization%15.3f\n\n",
-            area_server_status / sim_time);
-    fprintf(outfile, "Time simulation ended%12.3f minutes", sim_time);
+    fprintf(outfile, "\n\nAverage delay in queue 1%11.3f minutes\n\n",
+            total_of_delays_1 / num_custs_delayed_1);
+    fprintf(outfile, "Average number in queue 1%10.3f\n\n",
+            area_num_in_q_1 / sim_time);
+    fprintf(outfile, "Server utilization 1%15.3f\n\n",
+            area_server_status_1 / sim_time);
+    fprintf(outfile, "\n\nAverage delay in queue 2%11.3f minutes\n\n",
+            total_of_delays_2 / num_custs_delayed_2);
+    fprintf(outfile, "Average number in queue 2%10.3f\n\n",
+            area_num_in_q_2 / sim_time);
+    fprintf(outfile, "Server utilization 2%15.3f\n\n",
+            area_server_status_2 / sim_time);
+    fprintf(outfile, "Time simulation ended%12.3f minutes\n\n", sim_time);
 
 }
 
@@ -371,11 +377,13 @@ void update_time_avg_stats(void)  /* Update area accumulators for time-average
 
     /* Update area under number-in-queue function. */
 
-    area_num_in_q      += num_in_q * time_since_last_event;
+    area_num_in_q_1      += num_in_q_1 * time_since_last_event;
+    area_num_in_q_2     += num_in_q_2 * time_since_last_event;
 
     /* Update area under server-busy indicator function. */
 
-    area_server_status += server_status * time_since_last_event;
+    area_server_status_1 += server_status_1 * time_since_last_event;
+    area_server_status_2 += server_status_2 * time_since_last_event;
 }
 
 
