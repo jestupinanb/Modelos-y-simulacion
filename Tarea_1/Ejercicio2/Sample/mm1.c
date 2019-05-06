@@ -195,7 +195,7 @@ void report(void)  /* Report generator function. */
 }
 
 void arrival(void){
-    numero_ini_re++;
+    numero_ini_re = numero_ini_re+1;
     time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
     time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
 }
