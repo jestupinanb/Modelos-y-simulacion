@@ -80,6 +80,7 @@ main()  /* Main function. */
 
         switch (next_event_type)
         {
+            /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
             case 1:
                 arrive();
                 break;
