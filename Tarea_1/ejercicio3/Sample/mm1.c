@@ -214,19 +214,19 @@ void arrive(void)  /* Arrival event function. */
 }
 
 
-void depart(void)  /* Departure event function. */
+void depart_1(void)  /* Departure event function. */ ///DEPARTURE SERVIDOR 1  EVENTO TIPO 2
 {
     int   i;
     float delay;
 
     /* Check to see whether the queue is empty. */
 
-    if (num_in_q == 0)
+    if (num_in_q_1 == 0)
     {
         /* The queue is empty so make the server idle and eliminate the
            departure (service completion) event from consideration. */
 
-        server_status      = IDLE;
+        server_status_1      = IDLE;
         time_next_event[2] = 1.0e+30;
     }
 
@@ -235,25 +235,68 @@ void depart(void)  /* Departure event function. */
         /* The queue is nonempty, so decrement the number of customers in
            queue. */
 
-        --num_in_q;
+        --num_in_q_1;
 
         /* Compute the delay of the customer who is beginning service and update
            the total delay accumulator. */
 
         delay            = sim_time - time_arrival[1];
-        total_of_delays += delay;
+        total_of_delays_1 += delay;
 
         /* Increment the number of customers delayed, and schedule departure. */
 
-        ++num_custs_delayed;
+        ++num_custs_delayed_1;
         time_next_event[2] = sim_time + expon(mean_service);
 
         /* Move each customer in queue (if any) up one place. */
 
-        for (i = 1; i <= num_in_q; ++i)
+        for (i = 1; i <= num_in_q_1; ++i)
             time_arrival[i] = time_arrival[i + 1];
     }
 }
+
+
+void depart_2(void)  /* Departure event function. */ ///DEPARTURE SERVIDOR 2  EVENTO TIPO 3
+{
+    int   i;
+    float delay;
+
+    /* Check to see whether the queue is empty. */
+
+    if (num_in_q_2 == 0)
+    {
+        /* The queue is empty so make the server idle and eliminate the
+           departure (service completion) event from consideration. */
+
+        server_status_2      = IDLE;
+        time_next_event[3] = 1.0e+30;
+    }
+
+    else
+    {
+        /* The queue is nonempty, so decrement the number of customers in
+           queue. */
+
+        --num_in_q_2;
+
+        /* Compute the delay of the customer who is beginning service and update
+           the total delay accumulator. */
+
+        delay            = sim_time - time_arrival[1];
+        total_of_delays_2 += delay;
+
+        /* Increment the number of customers delayed, and schedule departure. */
+
+        ++num_custs_delayed_2;
+        time_next_event[3] = sim_time + expon(mean_service);
+
+        /* Move each customer in queue (if any) up one place. */
+
+        for (i = 1; i <= num_in_q_2; ++i)
+            time_arrival[i] = time_arrival[i + 1];
+    }
+}
+
 
 
 void report(void)  /* Report generator function. */
