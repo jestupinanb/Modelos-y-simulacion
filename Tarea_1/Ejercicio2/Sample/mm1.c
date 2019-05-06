@@ -178,8 +178,11 @@ void timing(void)  /* Timing function. */
     sim_time = min_time_next_event;
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6186288d545cabb74795ad2a09bc6151e9adda8a
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
@@ -210,14 +213,15 @@ void inicio_recoleccion (void)
     }else{
         server_status= BUSY;
         x++;
-        for(int i =1 ; i <=numero_ini_re;i++){
-            time_next_event[2][i] = time_next_event[4][i+1];
 
-        }
-        numero_ini_re--;
         /** se agenda el evento server_idle*/
             time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
+        for(int i =1 ; i <=numero_ini_re;i++){
+            time_next_event[2][i] = time_next_event[2][i+1];
+
+        }
+        numero_ini_re--;
 
 
 }
@@ -231,7 +235,24 @@ void server_idle(void){
 }
 
 void fin_recoleccion(void){
+    if(server_status==IDLE){
+            server_status= BUSY;
+            x++;
 
+        time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+
+    }else{
+       // server_status= BUSY;
+        y++;
+
+        /** se agenda el evento server_idle*/
+            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+    }
+    for(int i =1 ; i <=numero_fin_re;i++){
+            time_next_event[4][i] = time_next_event[4][i+1];
+
+        }
+        numero_fin_re--;
 }
 
 
