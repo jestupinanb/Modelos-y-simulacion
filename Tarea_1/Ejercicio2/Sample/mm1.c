@@ -89,6 +89,7 @@ main()  /* Main function. */
 
         update_time_avg_stats();
 
+
         /* Invoke the appropriate event function. */
 
         switch (next_event_type)
