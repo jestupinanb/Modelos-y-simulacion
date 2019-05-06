@@ -11,7 +11,7 @@
 #define IDLE      0  /* and idle. */
 
 int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re,num_delays_required;
-float area_server_status,sim_time;
+float area_server_status,sim_time, time_last_event;
 
 FILE  *infile, *outfile;
 
@@ -133,6 +133,8 @@ void initialize(void)  /* Initialization function. */
     numero_ini_re = 0;
     numero_fin_re = 0;
 
+    time_last_event = 0.0;
+
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
@@ -177,8 +179,7 @@ void timing(void)  /* Timing function. */
 }
 
 
-//HH
-//hhhh
+
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
@@ -237,7 +238,12 @@ void fin_recoleccion(void){
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
 {
+    float time_since_last_event;
 
+    time_since_last_event = sim_time - time_last_event;
+    time_last_event = sim_time;
+
+    area_server_status += server_status*time_since_last_event;
 }
 
 float generado_normal_1(float mean, float var){
