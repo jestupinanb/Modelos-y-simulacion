@@ -4,6 +4,8 @@
 #include <math.h>
 #include "lcgrand.h"  /* Header file for random-number generator. */
 
+#define Distancia_cajas 2.1
+#define Largo_banda 30
 #define Q_LIMIT 100000  /* Limit on queue length. */
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
@@ -28,6 +30,8 @@ float generado_normal_1(float mean, float var);
 void server_idle(void);
 void arrival(void);
 void fin_recoleccion(void);
+
+
 
 int k;
 
@@ -156,7 +160,7 @@ void timing(void)  /* Timing function. */
             next_event_type     = i;
         }
 
-    /* Check to see whether the event list is empty. */
+        /* Check to see whether the event list is empty. */
 
     if (next_event_type == 0)
     {
@@ -194,21 +198,23 @@ void arrival(void){
 void inicio_recoleccion (void)
 {
     if(server_status==BUSY){
+
             /**agendar evento fin de recoleccion de la caja*/
+        time_next_event[4][numero_fin_re] = sim_time +
 
     }else{
         server_status== BUSY;
         x++;
 
         /** se agenda el evento server_idle*/
-
+            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
 
 }
 
 void server_idle(void){
     server_status = IDLE;
-    if(){
+    if(numero_fin_re >= 0){
 
     }
 }
