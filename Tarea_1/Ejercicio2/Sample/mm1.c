@@ -205,8 +205,9 @@ void inicio_recoleccion (void)
     if(server_status==BUSY){
 
             /**agendar evento fin de recoleccion de la caja*/
+            numero_fin_re += 1;
         time_next_event[4][numero_fin_re] = sim_time + (Distancia_cajas/velocidad_cinta);
-        numero_fin_re += 1;
+
     }else{
         server_status= BUSY;
         x++;
