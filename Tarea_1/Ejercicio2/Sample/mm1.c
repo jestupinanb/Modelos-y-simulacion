@@ -150,7 +150,7 @@ void timing(void)  /* Timing function. */
             next_event_type     = i;
         }
 
-    /* Check to see whether the event list is empty. */
+        /* Check to see whether the event list is empty. */
 
     if (next_event_type == 0)
     {
@@ -188,12 +188,13 @@ void inicio_recoleccion (void)
     if(server_status==BUSY){
             /**agendar evento fin de recoleccion de la caja*/
 
+
     }else{
         server_status== BUSY;
         x++;
 
         /** se agenda el evento server_idle*/
-
+            time_next_event[3][1]= generado_normal_1()
     }
 
 }
