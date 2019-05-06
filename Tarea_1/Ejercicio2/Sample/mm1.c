@@ -136,7 +136,7 @@ void initialize(void)  /* Initialization function. */
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
-    /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
+    /// TNE      1- ARRIVAL     2-INICIO_RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
 
     time_next_event[1][1] = sim_time + 2.10/velocidad_cinta;
     time_next_event[2][1] = 1.0e+30;
@@ -227,6 +227,7 @@ void server_idle(void){
 void fin_recoleccion(void){
 
 }
+
 
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
