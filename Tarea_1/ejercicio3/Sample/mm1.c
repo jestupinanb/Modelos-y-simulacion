@@ -66,7 +66,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (num_custs_delayed_1+ num_custs_delayed_2 < num_delays_required)
+    while (sim_time <= num_delays_required)
     {
         /* Determine the next event. */
 
