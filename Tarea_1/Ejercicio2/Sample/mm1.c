@@ -14,7 +14,7 @@ float area_server_status,sim_time;
 FILE  *infile, *outfile;
 
 ///Creados nuevos
-float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[20][Q_LIMIT + 1];
+float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[5][20];
 int x,y;
 
 
