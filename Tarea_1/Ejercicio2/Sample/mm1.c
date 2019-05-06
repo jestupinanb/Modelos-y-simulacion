@@ -257,7 +257,12 @@ void server_idle(void){
     server_status = IDLE;
     if(numero_fin_re >= 1){
         time_next_event[4][1] = sim_time;
+<<<<<<< HEAD
         return;
+=======
+    }else{
+        time_next_event[3][1] =1.0e+30;
+>>>>>>> 878f4c1ab7bcb6ab728d750a881ec31744524efb
     }
    // printf("SIM_TIME TIPO 3  %f\n\n",sim_time);
 
