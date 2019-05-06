@@ -205,7 +205,10 @@ void inicio_recoleccion (void)
     }else{
         server_status== BUSY;
         x++;
+        for(int i =0 ; i <numero_ini_re;i++){
+            time_next_event[2][i] = time_next_event[4][i+1];
 
+        }
         /** se agenda el evento server_idle*/
             time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
