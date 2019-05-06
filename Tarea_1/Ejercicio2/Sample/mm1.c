@@ -139,9 +139,9 @@ void timing(void)  /* Timing function. */
     /* Determine the event type of the next event to occur. */
 
     for (i = 1; i <= num_events; ++i)
-        if (time_next_event[1][i] < min_time_next_event)
+        if (time_next_event[i][1] < min_time_next_event)
         {
-            min_time_next_event = time_next_event[1][i];
+            min_time_next_event = time_next_event[i][1];
             next_event_type     = i;
         }
 
