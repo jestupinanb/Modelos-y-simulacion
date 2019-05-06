@@ -34,17 +34,17 @@ main()  /* Main function. */
 
     outfile = fopen("mm1.out", "w");
 
-    fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
+    fscanf(infile, "%f %f %f %d", &mean_interarrival, &mean_service_1, &mean_service_2,
            &num_delays_required);
 
 
 
     for(k = 0;k<20;k++){
     fprintf(outfile,"\n------------------------\n");
-    fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
+    fprintf(outfile,"\n\nSimulacion numero  %d\n\n",k);
     /* Specify the number of events for the timing function. */
 
-    num_events = 2;
+    num_events = 3;
 
     /* Read input parameters. */
 
@@ -52,9 +52,10 @@ main()  /* Main function. */
     /* Write report heading and input parameters. */
 
     fprintf(outfile, "Single-server queueing system\n\n");
-    fprintf(outfile, "Mean interarrival time%11.3f minutes\n\n",
+    fprintf(outfile, "Mean interarrival time%11.3f personas\n\n",
             mean_interarrival);
-    fprintf(outfile, "Mean service time %16.3f minutes\n\n", mean_service);
+    fprintf(outfile, "Mean service time 1 %16.3f minutes\n\n", mean_service_1);
+    fprintf(outfile, "Mean service time 2 %16.3f minutes\n\n", mean_service_2);
     fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
 
 
@@ -65,7 +66,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (num_custs_delayed < num_delays_required)
+    while (num_custs_delayed_1+ num_custs_delayed_2 < num_delays_required)
     {
         /* Determine the next event. */
 
@@ -83,7 +84,11 @@ main()  /* Main function. */
                 arrive();
                 break;
             case 2:
-                depart();
+                depart_1();
+                break;
+
+            case 3:
+                depart_2();
                 break;
         }
     }
