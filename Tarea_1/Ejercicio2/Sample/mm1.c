@@ -47,9 +47,10 @@ main()  /* Main function. */
     fscanf(infile, "%f %f %f %d", &mean_descarga, &desv_e_descarga,&velocidad_cinta,
            &num_delays_required);
 
-    for(k = 0;k<10;k++){
+    do{
     fprintf(outfile,"\n------------------------\n");
     fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
+    fprintf(outfile,"\nVelocidad cinta %f\n",velocidad_cinta);
     /* Specify the number of events for the timing function. */
 
     num_events = 4;
@@ -114,7 +115,10 @@ main()  /* Main function. */
     /* Invoke the report generator and end the simulation. */
 
     report();
-    }
+
+    velocidad_cinta-=0.001;
+    }while(y>0);
+
     //endfor
 
     fclose(infile);
@@ -156,7 +160,6 @@ void initialize(void)  /* Initialization function. */
     time_next_event[3][1] = 1.0e+30;
     time_next_event[4][1] = 1.0e+30;
 }
-
 
 
 void timing(void)  /* Timing function. */
