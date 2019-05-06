@@ -37,7 +37,7 @@ main()  /* Main function. */
     fscanf(infile, "%f %f %d", &mean_interarrival, &mean_service,
            &num_delays_required);
 
-    mean_interarrival =  mean_interarrival/60;
+
 
     for(k = 0;k<20;k++){
     fprintf(outfile,"\n------------------------\n");
@@ -170,11 +170,10 @@ void arrive(void)  /* Arrival event function. */
 
     /* Check to see whether server is busy. */
 
-    if (server_status == BUSY)
+    if (num_in_q_1>=10)
     {
-        /* Server is busy, so increment number of customers in queue. */
-
-        ++num_in_q;
+      if(server_status_2==BUSY){
+        ++num_in_q_2;
 
         /* Check to see whether an overflow condition exists. */
 
@@ -190,7 +189,7 @@ void arrive(void)  /* Arrival event function. */
         /* There is still room in the queue, so store the time of arrival of the
            arriving customer at the (new) end of time_arrival. */
 
-        time_arrival[num_in_q] = sim_time;
+        time_arrival_2[num_in_q_2] = sim_time;
     }
 
     else
@@ -200,18 +199,57 @@ void arrive(void)  /* Arrival event function. */
            the results of the simulation.) */
 
         delay            = 0.0;
-        total_of_delays += delay;
+        total_of_delays_2 += delay;
 
         /* Increment the number of customers delayed, and make server busy. */
 
-        ++num_custs_delayed;
-        server_status = BUSY;
+        ++num_custs_delayed_2;
+        server_status_2 = BUSY;
 
         /* Schedule a departure (service completion). */
 
-        time_next_event[2] = sim_time + expon(mean_service);
+        //time_next_event[2] = sim_time + expon(mean_service);
+
+
+      }
     }
+    else{
+              if(server_status_1==BUSY){
+                ++num_in_q_1;
+
+        /* Check to see whether an overflow condition exists. */
+
+           /* There is still room in the queue, so store the time of arrival of the
+           arriving customer at the (new) end of time_arrival. */
+
+            time_arrival_1[num_in_q_1] = sim_time;
+    }
+
+    else
+    {
+        /* Server is idle, so arriving customer has a delay of zero.  (The
+           following two statements are for program clarity and do not affect
+           the results of the simulation.) */
+
+        delay            = 0.0;
+        total_of_delays_1 += delay;
+
+        /* Increment the number of customers delayed, and make server busy. */
+
+        ++num_custs_delayed_1;
+        server_status_1 = BUSY;
+
+        /* Schedule a departure (service completion). */
+
+       // time_next_event[2] = sim_time + expon(mean_service);
+
+
+      }
+    }
+    time_next_event[2] = sim_time + expon(mean_service);
 }
+  /* Server is busy, so increment number of customers in queue. */
+
 
 
 void depart(void)  /* Departure event function. */
