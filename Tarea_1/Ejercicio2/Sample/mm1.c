@@ -214,7 +214,7 @@ void inicio_recoleccion (void)
             time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
         for(int i =1 ; i <=numero_ini_re;i++){
-            time_next_event[2][i] = time_next_event[4][i+1];
+            time_next_event[2][i] = time_next_event[2][i+1];
 
         }
         numero_ini_re--;
