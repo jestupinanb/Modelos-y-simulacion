@@ -226,6 +226,7 @@ void fin_recoleccion(void){
 
 }
 
+
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
 {
