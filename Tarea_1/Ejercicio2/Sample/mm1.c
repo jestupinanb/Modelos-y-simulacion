@@ -89,7 +89,6 @@ main()  /* Main function. */
 
         update_time_avg_stats();
 
-
         /* Invoke the appropriate event function. */
 
         switch (next_event_type)
@@ -259,8 +258,6 @@ void server_idle(void){
     if(numero_fin_re >= 1){
         time_next_event[4][1] = sim_time;
         return;
-    }else{
-        time_next_event[3][1] =1.0e+30;
     }
    // printf("SIM_TIME TIPO 3  %f\n\n",sim_time);
 
