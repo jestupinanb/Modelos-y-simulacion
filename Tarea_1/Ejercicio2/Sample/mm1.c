@@ -176,9 +176,6 @@ void timing(void)  /* Timing function. */
     sim_time = min_time_next_event;
 }
 
-
-//HH
-//hhhh
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
