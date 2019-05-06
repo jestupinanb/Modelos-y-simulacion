@@ -20,12 +20,14 @@ int x,y;
 
 void  initialize(void);
 void  timing(void);
-void  arrive(void);
-void  depart(void);
 void  report(void);
 void  update_time_avg_stats(void);
 float expon(float mean);
-float poisson(float beta);
+void inicio_recoleccion (void);
+float generado_normal_1(float mean, float var);
+void server_idle(void);
+void arrival(void);
+void fin_recoleccion(void);
 
 int k;
 
@@ -82,13 +84,15 @@ main()  /* Main function. */
         {
             /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
             case 1:
-                arrive();
+                arrival();
                 break;
             case 2:
-                depart();
+                inicio_recoleccion();
                 break;
             case 3:
-
+                server_idle();
+            case 4:
+                fin_recoleccion();
         }
     }
 
@@ -161,7 +165,6 @@ void timing(void)  /* Timing function. */
     sim_time = min_time_next_event;
 }
 
-
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
@@ -176,6 +179,9 @@ void report(void)  /* Report generator function. */
 
 }
 
+void arrival(void){
+
+}
 
 void inicio_recoleccion (void)
 {
@@ -192,6 +198,13 @@ void inicio_recoleccion (void)
 
 }
 
+void server_idle(void){
+
+}
+
+void fin_recoleccion(void){
+
+}
 
 void update_time_avg_stats(void)  /* Update area accumulators for time-average
                                      statistics. */
