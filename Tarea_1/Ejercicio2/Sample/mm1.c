@@ -8,7 +8,7 @@
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_events, num_in_q, server_status, numero_fin_re;
+int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re;
 float area_server_status,sim_time;
 
 FILE  *infile, *outfile;
@@ -176,7 +176,7 @@ void report(void)  /* Report generator function. */
 }
 
 
-void inicio_recolecion (void)
+void inicio_recoleccion (void)
 {
     if(server_status==BUSY){
             /**agendar evento fin de recoleccion de la caja*/
