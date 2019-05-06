@@ -68,7 +68,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (x+y <= 1000)
+    while (x+y <= 1000)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
 
@@ -91,8 +91,10 @@ main()  /* Main function. */
                 break;
             case 3:
                 server_idle();
+                break;
             case 4:
                 fin_recoleccion();
+                break;
         }
     }
 
