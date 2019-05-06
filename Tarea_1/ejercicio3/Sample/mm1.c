@@ -264,6 +264,7 @@ void arrive(void)  /* Arrival event function. */
 
 
 
+
 void depart_1(void)  /* Departure event function. */ ///DEPARTURE SERVIDOR 1  EVENTO TIPO 2
 {
     int   i;
