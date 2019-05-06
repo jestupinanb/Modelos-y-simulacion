@@ -183,10 +183,10 @@ void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
 
-    fprintf(outfile, "\n\nAverage delay in queue%11.3f minutes\n\n",
-            total_of_delays / num_custs_delayed);
-    fprintf(outfile, "Average number in queue%10.3f\n\n",
-            area_num_in_q / sim_time);
+    fprintf(outfile, "\n\nnumero de x %11.3f minutes\n\n",
+            x);
+    fprintf(outfile, "Average numero de y %10.3f\n\n",
+            y);
     fprintf(outfile, "Server utilization%15.3f\n\n",
             area_server_status / sim_time);
     fprintf(outfile, "Time simulation ended%12.3f minutes", sim_time);
