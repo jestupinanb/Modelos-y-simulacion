@@ -10,7 +10,7 @@
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re;
+int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re,num_delays_required;
 float area_server_status,sim_time;
 
 FILE  *infile, *outfile;
@@ -73,7 +73,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (x+y <= 1000)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
+    while (x+y <= num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
 
