@@ -200,12 +200,15 @@ void inicio_recoleccion (void)
     if(server_status==BUSY){
 
             /**agendar evento fin de recoleccion de la caja*/
-        time_next_event[4][numero_fin_re] = sim_time +
+        time_next_event[4][numero_fin_re++] = sim_time + (Distancia_cajas/velocidad_cinta);
 
     }else{
         server_status== BUSY;
         x++;
+        for(int i =0 ; i <numero_ini_re;i++){
+            time_next_event[2][i] = time_next_event[4][i+1];
 
+        }
         /** se agenda el evento server_idle*/
             time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
