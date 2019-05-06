@@ -201,7 +201,10 @@ void inicio_recoleccion (void)
 }
 
 void server_idle(void){
+    server_status = IDLE;
+    if(){
 
+    }
 }
 
 void fin_recoleccion(void){
