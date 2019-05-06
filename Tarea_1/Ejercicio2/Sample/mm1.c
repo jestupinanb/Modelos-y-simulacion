@@ -76,7 +76,8 @@ main()  /* Main function. */
     while (x+y <= num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
-
+        printf("%d\n", x+y);
+        printf("%d\n",next_event_type);
         timing();
 
         /* Update time-average statistical accumulators. */
@@ -87,6 +88,7 @@ main()  /* Main function. */
 
         switch (next_event_type)
         {
+
             /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
             case 1:
                 arrival();
@@ -271,7 +273,7 @@ float generado_normal_1(float mean, float desv){
 
     float v1= 2*u1-1;
     float v2= 2*u2-1;
-    fprintf(outfile_1, "%f\n",v1);
+//    fprintf(outfile_1, "%f\n",v1);
     w= pow(v1,2)+ pow(v2,2);
     while(w>1){
 
