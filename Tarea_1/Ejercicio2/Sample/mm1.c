@@ -76,8 +76,7 @@ main()  /* Main function. */
     while (x+y <= num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
-        printf("%d\n", x+y);
-        printf("%d\n",next_event_type);
+
         timing();
 
         /* Update time-average statistical accumulators. */
