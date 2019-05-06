@@ -158,6 +158,7 @@ void initialize(void)  /* Initialization function. */
 }
 
 
+
 void timing(void)  /* Timing function. */
 {
     int   i;
