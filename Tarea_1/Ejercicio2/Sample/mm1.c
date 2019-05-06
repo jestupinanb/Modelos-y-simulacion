@@ -176,6 +176,9 @@ void timing(void)  /* Timing function. */
     sim_time = min_time_next_event;
 }
 
+
+//HH
+//hhhh
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
@@ -216,7 +219,9 @@ void inicio_recoleccion (void)
         }
         numero_ini_re--;
 
+
 }
+
 
 void server_idle(void){
     server_status = IDLE;
