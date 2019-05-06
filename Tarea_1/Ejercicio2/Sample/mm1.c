@@ -263,7 +263,7 @@ void update_time_avg_stats(void)  /* Update area accumulators for time-average
     area_server_status += server_status*time_since_last_event;
 }
 
-float generado_normal_1(float mean, float var){
+float generado_normal_1(float mean, float desv){
 
     float w;
     float u1 =lcgrand(1);
@@ -285,5 +285,5 @@ float generado_normal_1(float mean, float var){
     }
 
     float y = sqrt((-2*log(w))/w);
-    return mean + (var*v1*y);
+    return mean + (desv*v1*y);
 };
