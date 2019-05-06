@@ -16,6 +16,7 @@ float area_server_status,sim_time;
 FILE  *infile, *outfile;
 
 ///Creados nuevos
+/// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
 float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[5][20];
 int x,y;
 
@@ -208,8 +209,8 @@ void inicio_recoleccion (void)
 
 void server_idle(void){
     server_status = IDLE;
-    if(numero_fin_re >= 0){
-
+    if(numero_fin_re >= 1){
+        time_next_event[4][1] = sim_time;
     }
 }
 
