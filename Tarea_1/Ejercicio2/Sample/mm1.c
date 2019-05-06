@@ -10,7 +10,7 @@
 #define BUSY      1  /* Mnemonics for server's being busy */
 #define IDLE      0  /* and idle. */
 
-int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re;
+int   next_event_type, num_events, num_in_q, server_status, numero_fin_re, numero_ini_re,num_delays_required;
 float area_server_status,sim_time;
 
 FILE  *infile, *outfile;
@@ -73,7 +73,7 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (x+y <= 1000)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
+    while (x+y <= num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
 
@@ -130,8 +130,8 @@ void initialize(void)  /* Initialization function. */
     area_server_status = 0.0;
 
 
-    numero_ini_re = 1;
-    numero_fin_re = 1;
+    numero_ini_re = 0;
+    numero_fin_re = 0;
 
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
@@ -191,9 +191,9 @@ void report(void)  /* Report generator function. */
 }
 
 void arrival(void){
-    time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
-    time_next_event[2][numero_ini_re]= Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
     numero_ini_re++;
+    time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
+    time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
 }
 
 void inicio_recoleccion (void)
