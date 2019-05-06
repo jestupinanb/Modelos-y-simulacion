@@ -176,6 +176,9 @@ void timing(void)  /* Timing function. */
     sim_time = min_time_next_event;
 }
 
+
+//HH
+//hhhh
 void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
@@ -215,7 +218,9 @@ void inicio_recoleccion (void)
             time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
     }
 
+
 }
+
 
 void server_idle(void){
     server_status = IDLE;
