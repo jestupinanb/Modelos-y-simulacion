@@ -229,6 +229,8 @@ void server_idle(void){
     server_status = IDLE;
     if(numero_fin_re >= 1){
         time_next_event[4][1] = sim_time;
+    }else{
+        time_next_event[3][1] =1.0e+30;
     }
 }
 
