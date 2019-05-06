@@ -29,6 +29,8 @@ void server_idle(void);
 void arrival(void);
 void fin_recoleccion(void);
 
+
+
 int k;
 
 main()  /* Main function. */
@@ -188,6 +190,7 @@ void arrival(void){
 void inicio_recoleccion (void)
 {
     if(server_status==BUSY){
+
             /**agendar evento fin de recoleccion de la caja*/
 
     }else{
@@ -202,7 +205,7 @@ void inicio_recoleccion (void)
 
 void server_idle(void){
     server_status = IDLE;
-    if(){
+    if(numero_fin_re >= 0){
 
     }
 }
