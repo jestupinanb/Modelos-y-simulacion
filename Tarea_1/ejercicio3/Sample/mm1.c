@@ -39,7 +39,7 @@ main()  /* Main function. */
 
 
 
-    for(k = 0;k<20;k++){
+    for(k = 0;k<1;k++){
     fprintf(outfile,"\n------------------------\n");
     fprintf(outfile,"\n\nSimulacion numero  %d\n\n",k);
     /* Specify the number of events for the timing function. */
@@ -54,9 +54,9 @@ main()  /* Main function. */
     fprintf(outfile, "Single-server queueing system\n\n");
     fprintf(outfile, "Mean interarrival time%11.3f personas\n\n",
             mean_interarrival);
-    fprintf(outfile, "Mean service time 1 %16.3f minutes\n\n", mean_service_1);
-    fprintf(outfile, "Mean service time 2 %16.3f minutes\n\n", mean_service_2);
-    fprintf(outfile, "Number of customers%14d\n\n", num_delays_required);
+    fprintf(outfile, "Mean service time 1 %16.3f seconds\n\n", mean_service_1);
+    fprintf(outfile, "Mean service time 2 %16.3f seconds\n\n", mean_service_2);
+    fprintf(outfile, "Simulation time required%14d\n\n", num_delays_required);
 
 
 
@@ -66,12 +66,20 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (sim_time <= num_delays_required)
+    while (sim_time <= 16800)
     {
         /* Determine the next event. */
+      /*  printf("num in q 1   %d\n",num_in_q_1);
+        printf("num in q 2   %d\n\n",num_in_q_2);
+*/
+
 
         timing();
 
+       /* for(int j=1;j<4;j++){
+            printf("evento tipo %d   TIME  %f\n\n" ,j,time_next_event[j] );
+        }
+*/
         /* Update time-average statistical accumulators. */
 
         update_time_avg_stats();
@@ -360,12 +368,16 @@ void report(void)  /* Report generator function. */
             area_num_in_q_1 / sim_time);
     fprintf(outfile, "Server utilization 1%15.3f\n\n",
             area_server_status_1 / sim_time);
+    fprintf(outfile, "Number of delayed customers 1 %11.3d clients\n\n",
+             num_custs_delayed_1);
     fprintf(outfile, "\n\nAverage delay in queue 2%11.3f minutes\n\n",
             total_of_delays_2 / num_custs_delayed_2);
     fprintf(outfile, "Average number in queue 2%10.3f\n\n",
             area_num_in_q_2 / sim_time);
     fprintf(outfile, "Server utilization 2%15.3f\n\n",
             area_server_status_2 / sim_time);
+    fprintf(outfile, "Number of delayed customers 2 %11.3d clients\n\n",
+             num_custs_delayed_2);
     fprintf(outfile, "Time simulation ended%12.3f minutes\n\n", sim_time);
 
 }
