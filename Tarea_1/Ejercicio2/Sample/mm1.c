@@ -113,20 +113,19 @@ void initialize(void)  /* Initialization function. */
 
     server_status   = IDLE;
     num_in_q        = 0;
-    time_last_event = 0.0;
 
     /* Initialize the statistical counters. */
-
-    num_custs_delayed  = 0;
-    total_of_delays    = 0.0;
-    area_num_in_q      = 0.0;
     area_server_status = 0.0;
 
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
-    time_next_event[1] = sim_time + poisson(mean_descarga);
-    time_next_event[2] = 1.0e+30;
+    /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
+
+    time_next_event[1][1] = sim_time + 2.10/velocidad_cinta;
+    time_next_event[2][1] = 1.0e+30;
+    time_next_event[3][1] = 1.0e+30;
+    time_next_event[4][1] = 1.0e+30;
 }
 
 
