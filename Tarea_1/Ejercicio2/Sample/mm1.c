@@ -47,7 +47,7 @@ main()  /* Main function. */
     fscanf(infile, "%f %f %f %d", &mean_descarga, &desv_e_descarga,&velocidad_cinta,
            &num_delays_required);
 
-    for(k = 0;k<20;k++){
+    for(k = 0;k<10;k++){
     fprintf(outfile,"\n------------------------\n");
     fprintf(outfile,"\n\nSimulacion numero %d\n\n",k);
     /* Specify the number of events for the timing function. */
@@ -73,10 +73,16 @@ main()  /* Main function. */
 
     /* Run the simulation while more delays are still needed. */
 
-    while (x+y <= num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
+    int i= 0;
+    while ( x+y < num_delays_required)///Verifica que no hayan salido 1000 cajas, fin de la mimulacion
     {
         /* Determine the next event. */
 
+       /* for(int j=1; j< 5; j++){
+            printf("evento tipo %d     tiempo %f\n", j,time_next_event[j][1]);
+        }
+            printf("SIM_TIME  %f\n",sim_time);
+*/
         timing();
 
         /* Update time-average statistical accumulators. */
@@ -102,6 +108,7 @@ main()  /* Main function. */
                 fin_recoleccion();
                 break;
         }
+        i++;
     }
 
     /* Invoke the report generator and end the simulation. */
@@ -136,6 +143,9 @@ void initialize(void)  /* Initialization function. */
 
     time_last_event = 0.0;
 
+    x=0;
+    y=0;
+
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
@@ -157,11 +167,26 @@ void timing(void)  /* Timing function. */
 
     /* Determine the event type of the next event to occur. */
 
-    for (i = 1; i <= num_events; ++i)
-        if (time_next_event[i][1] < min_time_next_event)
+
+        if (time_next_event[1][1] < min_time_next_event)
         {
-            min_time_next_event = time_next_event[i][1];
-            next_event_type     = i;
+            min_time_next_event = time_next_event[1][1];
+            next_event_type     = 1;
+        }
+        if (time_next_event[2][1] < min_time_next_event)
+        {
+            min_time_next_event = time_next_event[2][1];
+            next_event_type     = 2;
+        }
+        if (time_next_event[4][1] < min_time_next_event)
+        {
+            min_time_next_event = time_next_event[4][1];
+            next_event_type     = 4;
+        }
+        if (time_next_event[3][1] < min_time_next_event)
+        {
+            min_time_next_event = time_next_event[3][1];
+            next_event_type     = 3;
         }
 
         /* Check to see whether the event list is empty. */
@@ -177,6 +202,7 @@ void timing(void)  /* Timing function. */
     /* The event list is not empty, so advance the simulation clock. */
 
     sim_time = min_time_next_event;
+   // printf("TIPO EVENTO   %d\n\n",next_event_type);
 }
 
 
@@ -184,9 +210,9 @@ void report(void)  /* Report generator function. */
 {
     /* Compute and write estimates of desired measures of performance. */
 
-    fprintf(outfile, "\n\nnumero de x %11.3f minutes\n\n",
+    fprintf(outfile, "\n\nnumero de x %11.3d \n\n",
             x);
-    fprintf(outfile, "Average numero de y %10.3f\n\n",
+    fprintf(outfile, "Average numero de y %10.3d\n\n",
             y);
     fprintf(outfile, "Server utilization%15.3f\n\n",
             area_server_status / sim_time);
@@ -198,11 +224,13 @@ void arrival(void){
     numero_ini_re = numero_ini_re+1;
     time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
     time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
+
 }
 
 void inicio_recoleccion (void)
 {
     if(server_status==BUSY){
+
 
             /**agendar evento fin de recoleccion de la caja*/
             numero_fin_re += 1;
@@ -213,7 +241,7 @@ void inicio_recoleccion (void)
         x++;
 
         /** se agenda el evento server_idle*/
-            time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+            time_next_event[3][1]= sim_time+generado_normal_1(mean_descarga, desv_e_descarga);
     }
         for(int i =1 ; i <=numero_ini_re;i++){
             time_next_event[2][i] = time_next_event[2][i+1];
@@ -229,7 +257,11 @@ void server_idle(void){
     server_status = IDLE;
     if(numero_fin_re >= 1){
         time_next_event[4][1] = sim_time;
+        return;
     }
+   // printf("SIM_TIME TIPO 3  %f\n\n",sim_time);
+
+    time_next_event[3][1]=1.0e+30;
 }
 
 void fin_recoleccion(void){
@@ -237,7 +269,7 @@ void fin_recoleccion(void){
             server_status= BUSY;
             x++;
 
-        time_next_event[3][1]= generado_normal_1(mean_descarga, desv_e_descarga);
+        time_next_event[3][1]= sim_time+ generado_normal_1(mean_descarga, desv_e_descarga);
 
     }else{
        // server_status= BUSY;
@@ -246,10 +278,11 @@ void fin_recoleccion(void){
         /** se agenda el evento server_idle*/
 
     }
-    for(int i =1 ; i <=numero_fin_re;i++){
+    for(int i =1 ; i <numero_fin_re;i++){
             time_next_event[4][i] = time_next_event[4][i+1];
 
         }
+        time_next_event[4][numero_fin_re]=1.0e+30;
         numero_fin_re--;
 }
 
