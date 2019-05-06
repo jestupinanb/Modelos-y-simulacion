@@ -124,6 +124,10 @@ void initialize(void)  /* Initialization function. */
     /* Initialize the statistical counters. */
     area_server_status = 0.0;
 
+
+    numero_ini_re = 1;
+    numero_fin_re = 1;
+
     /* Initialize event list.  Since no customers are present, the departure
        (service completion) event is eliminated from consideration. */
 
@@ -182,6 +186,8 @@ void report(void)  /* Report generator function. */
 }
 
 void arrival(void){
+    time_next_event[1][1] = sim_time + 2.10/velocidad_cinta;  // Se programa el siguiente evento de llegada
+    time_next_event[2][numero_ini_re]= 30/velocidad_cinta;
 
 }
 
