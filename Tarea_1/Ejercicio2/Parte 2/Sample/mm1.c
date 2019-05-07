@@ -155,7 +155,7 @@ void initialize(void)  /* Initialization function. */
 
     /// TNE      1- ARRIVAL     2-INICIO_RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
 
-    time_next_event[1][1] = sim_time + 2.10/velocidad_cinta;
+    time_next_event[1][1] = sim_time + expon(mean_llegada)/velocidad_cinta;
     time_next_event[2][1] = 1.0e+30;
     time_next_event[3][1] = 1.0e+30;
     time_next_event[4][1] = 1.0e+30;
@@ -226,7 +226,7 @@ void report(void)  /* Report generator function. */
 
 void arrival(void){
     numero_ini_re = numero_ini_re+1;
-    time_next_event[1][1] = sim_time + expon(mean_llegada);  // Se programa el siguiente evento de llegada
+    time_next_event[1][1] = sim_time + expon(mean_llegada)/velocidad_cinta;  // Se programa el siguiente evento de llegada
     time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
 
 }
