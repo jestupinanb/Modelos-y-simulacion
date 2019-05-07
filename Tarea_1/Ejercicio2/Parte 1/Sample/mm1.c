@@ -116,7 +116,7 @@ main()  /* Main function. */
 
     report();
 
-    velocidad_cinta-=0.001;
+    velocidad_cinta-=0.0001;
     }while(y>0);
 
     //endfor
