@@ -1,0 +1,77 @@
+# depslib dependency file v1.0
+1514140574 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\main.c
+	<stdio.h>
+	<stdlib.h>
+
+903991724 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\inv.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+903918616 d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\lcgrand.h
+	"lcgrand.h"
+
+903918794 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\lcgrand.c
+
+1556382901 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1135988227 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\mm1alt.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+903918794 source:d:\drive\5 semestre\modelos y simulacion\tareas\codigo tarea\modsim_2204\sample\lcgrand.c
+
+1556677317 source:c:\users\jaime\desktop\modelos\sample\lcgrand.c
+
+1557076010 source:c:\users\jaime\desktop\modelos\sample\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1556677317 c:\users\jaime\desktop\modelos\sample\lcgrand.h
+	"lcgrand.h"
+
+1556677317 source:c:\users\jaime\documents\modelos-y-simulacion\tarea_1\ejercicio1\sample\lcgrand.c
+
+1557081169 source:c:\users\jaime\documents\modelos-y-simulacion\tarea_1\ejercicio1\sample\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1556677317 c:\users\jaime\documents\modelos-y-simulacion\tarea_1\ejercicio1\sample\lcgrand.h
+	"lcgrand.h"
+
+1557098773 D
+
+1557098773 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\github\modelos-y-simulacion\tarea_1\ejercicio2\sample\lcgrand.c
+
+1556677317 source:c:\users\jaime\documents\modelos-y-simulacion\tarea_1\ejercicio2\sample\lcgrand.c
+
+1557098061 source:c:\users\valentina\documents\github\modelos-y-simulacion\tarea_1\ejercicio2\sample\lcgrand.c
+
+1557098061 a019163942615e8f62f111ddc931e88d4f6ca
+
+1557098061 c17050f132192d55f58bd772c742067e9d9cc
+
+1557113776 source:c:\users\valentina\documents\github\modelos-y-simulacion\tarea_1\ejercicio2\sample\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1557098061 c:\users\valentina\documents\github\modelos-y-simulacion\tarea_1\ejercicio2\sample\lcgrand.h
+	"lcgrand.h"
+
+1556677317 source:c:\users\jaime\desktop\modelos\ejercicio2\sample\lcgrand.c
+
+1557196023 source:c:\users\jaime\desktop\modelos\ejercicio2\sample\mm1.c
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1556677317 c:\users\jaime\desktop\modelos\ejercicio2\sample\lcgrand.h
+	"lcgrand.h"
+
