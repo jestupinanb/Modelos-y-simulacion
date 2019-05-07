@@ -17,7 +17,7 @@ FILE  *infile, *outfile;
 
 ///Creados nuevos
 /// TNE      1- ARRIVAL     2-RECOLECCION    3-SERVER_IDLE     4-FIN_RECOLECCION
-float mean_descarga,desv_e_descarga,velocidad_cinta,time_next_event[5][20];
+float mean_descarga,mean_llegada, desv_e_descarga,velocidad_cinta,time_next_event[5][Q_LIMIT];
 int x,y;
 
 
@@ -44,7 +44,7 @@ main()  /* Main function. */
 
     outfile = fopen("mm1.out", "w");
 
-    fscanf(infile, "%f %f %f %d", &mean_descarga, &desv_e_descarga,&velocidad_cinta,
+    fscanf(infile, "%f %f %f %f %d", &mean_descarga, &desv_e_descarga,&velocidad_cinta,&mean_llegada,
            &num_delays_required);
 
     do{
@@ -226,7 +226,7 @@ void report(void)  /* Report generator function. */
 
 void arrival(void){
     numero_ini_re = numero_ini_re+1;
-    time_next_event[1][1] = sim_time + Distancia_cajas/velocidad_cinta;  // Se programa el siguiente evento de llegada
+    time_next_event[1][1] = sim_time + expon(mean_llegada);  // Se programa el siguiente evento de llegada
     time_next_event[2][numero_ini_re]= sim_time + Largo_banda/velocidad_cinta;  // Tiempo de inicio de recolección
 
 }
@@ -301,6 +301,12 @@ void update_time_avg_stats(void)  /* Update area accumulators for time-average
 
     area_server_status += server_status*time_since_last_event;
 }
+float expon(float mean)  /* Exponential variate generation function. */
+{
+    /* Return an exponential random variate with mean "mean". */
+    return -mean * log(lcgrand(2));
+}
+
 
 float generado_normal_1(float mean, float desv){
 
