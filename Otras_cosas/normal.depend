@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1556670116 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\models-and-simulations-1-master\models-and-simulations-1-master\sample\lcgrand.c
+
+1557014171 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\nomal.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1557017536 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\normal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Normal.h"
+	"lcgrand.h"
+	<math.h>
+
+1557016386 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\normal\nomal.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"lcgrand.h"
+
+1556670116 source:c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\normal\lcgrand.c
+
+1557015012 c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\normal\normal.h
+
+1557014819 c:\users\lenovo\documents\universidad\semestre 5\modelos y simulacion\lab1\normal\lcgrand.h
+	"lcgrand.h"
+
