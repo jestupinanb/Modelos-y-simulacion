@@ -107,7 +107,7 @@ public class LosBarcos {
 		if( pro(STREAM_ARRIVAL) ) {//Recoger un elemento
 			Server.setBussy();
 			float tiempo = expon(meanattend, STREAM_ATTEND);
-			tiempo_reparando+= tiempo;
+			//tiempo_reparando+= tiempo;
 			eventSchedule(simTime +tiempo, EVENT_ATTEND );
 			
 		}else {
