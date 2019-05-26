@@ -1,35 +1,26 @@
 
 
-Modelo de barcos en un puerto con un muelles 2 amarres y 2 gruas 
+Modelo de Tienda de reparaciones de TV y VCR 
 
-Mean Arrival     1.25
-Min Unload ship  0.5
-Max Unload ship  1.5
-Number of days processed 90.0
-
-************************************************************
-*  FACILITY STADISTIC Grua 1                               *
-************************************************************
-*  Min = 0.32468033             Max = 2.8208504            *
-*  Records = 39                                            *
-*  Utilization average = 1.2784384                         *
-*  Utilization percentage  = 0.5504365                     *
-************************************************************
+Mean Arrival minimo     20.0	maximo	 55.0
+Mean repair TV  45.0	Var repair TV	5.0
+Mean repair VCR  31.0	Var repair VCR	5.0
+Max Attend  8.0
+Number of hours processed 600.0
 
 ************************************************************
-*  FACILITY STADISTIC Grua 2                               *
-************************************************************
-*  Min = 0.4579234              Max = 1.452651             *
-*  Records = 34                                            *
-*  Utilization average = 0.8715963                         *
-*  Utilization percentage  = 0.32715765                    *
+
+*  FACILITY STADISTIC Server                               *
 ************************************************************
 
+*  Min = 0.0                    Max = 48.73497             *
+
+*  Records = 15                                            *
+
+*  Utilization average = 27.50451                          *
+
+*  Utilization percentage  = 0.65596986                    *
+
 ************************************************************
-*  Tiempo de los puertos en general                        *
-************************************************************
-*  Min = 0.32468033             Max = 2.8208504            *
-*  Records = 73                                            *
-*  Utilization average = 1.0889504                         *
-************************************************************
+
 

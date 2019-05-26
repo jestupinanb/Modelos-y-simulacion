@@ -19,6 +19,7 @@ public class Queue<E> extends Collection {
         Node(Node next, E data){
             this.next = next;
             this.data = data;
+            
         }
     }
 

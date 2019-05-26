@@ -44,14 +44,14 @@ public class Facility extends DiscreteStat {
 		if (isBusy) {
 			setIdle();
 		}
-		out.write("************************************************************\n");
+		out.write("************************************************************\n"+'\n');
 		out.write(completeLine("*  FACILITY STADISTIC " + getName()));
-		out.write("************************************************************\n");
-		out.write(completeLine(completeHalfLine("*  Min = " + getMin()) + "  Max = " + getMax()));
-		out.write(completeLine("*  Records = " + getNumObs()));
-		out.write(completeLine("*  Utilization average = " + getAverage()));
-		out.write(completeLine("*  Utilization percentage  = " + getPercentage()));
-		out.write("************************************************************\n\n");
+		out.write("************************************************************\n"+'\n');
+		out.write(completeLine(completeHalfLine("*  Min = " + getMin()) + "  Max = " + getMax())+'\n');
+		out.write(completeLine("*  Records = " + getNumObs())+'\n');
+		out.write(completeLine("*  Utilization average = " + getAverage())+'\n');
+		out.write(completeLine("*  Utilization percentage  = " + getPercentage())+'\n');
+		out.write("************************************************************\n\n"+'\n');
 	}
 	
 	public float getPercentage() {
