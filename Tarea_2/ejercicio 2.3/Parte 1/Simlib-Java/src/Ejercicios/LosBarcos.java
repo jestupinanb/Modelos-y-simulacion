@@ -16,8 +16,8 @@ public class LosBarcos {
 	static final byte STREAM_ARRIVAL = 1, STREAM_REPAIR_TV = 2, STREAM_REPAIR_VCR = 3, STREAM_ATTEND = 4;
 	
 	static final int EVENTS_NUMBER = 3;
-	static  int  reparaciones_pendientes_tv= 2, reparaciones_pendientes_vcr= 2;
-	static float minarrival,maxarrival,  meanrepairtv, varrepairtv,meanrepairvcr,varrepairvcr,meanattend,lengthSimulation;
+	static  int  reparaciones_pendientes_tv, reparaciones_pendientes_vcr, reparaciones_TV_final,reparaciones_VCR_final;
+	static float minarrival,maxarrival,  meanrepairtv, varrepairtv,meanrepairvcr,varrepairvcr,meanattend,lengthSimulation,tiempo_reparando;
 
 
 	static SimReader reader;
@@ -55,6 +55,7 @@ public class LosBarcos {
         );
 		
 		initSimlib();
+		initSimlib_b();
 
 		/* Evitando que la lista de eventos tenga menos de 3 elementos */
 		eventSchedule(Double.MAX_VALUE, (byte) 1);
@@ -87,10 +88,12 @@ public class LosBarcos {
 	}
 
 	public static void arrival() {
+		if( simTime< 480) {
 		eventSchedule(simTime + unifrm(minarrival, maxarrival, STREAM_ARRIVAL), EVENT_ARRIVAL);
-		
+		}
 		if (Server.isBussy() ) {
 			queue.offer(simTime);
+			
 		} else {
 			
 			attend();
@@ -99,11 +102,13 @@ public class LosBarcos {
 	public static void attend() {
 		if(Server.isBussy())Server.setIdle();
 		if(!queue.isEmpty()) {
-		queue.poll();
+		queue.poll();}
 		byte ServerDesocupada;
 		if( pro(STREAM_ARRIVAL) ) {//Recoger un elemento
 			Server.setBussy();
-			eventSchedule(simTime + expon(meanattend, STREAM_ATTEND), EVENT_ATTEND);
+			float tiempo = expon(meanattend, STREAM_ATTEND);
+			tiempo_reparando+= tiempo;
+			eventSchedule(simTime +tiempo, EVENT_ATTEND );
 			
 		}else {
 			if(pro(STREAM_ARRIVAL) ) {//Reparar un tv
@@ -114,7 +119,7 @@ public class LosBarcos {
 				
 			}ocuparSever(ServerDesocupada);
 		}
-		}
+		
 	} 
 		
 		
@@ -141,10 +146,16 @@ public class LosBarcos {
 		if(Server.isBussy())Server.setIdle();
 		if (gruaDesocupada == TYPE_TV) {
 			Server.setBussy();
-			eventSchedule(simTime + normal(meanrepairtv,varrepairtv,STREAM_REPAIR_TV), EVENT_REPAIR);
+			double tiempo = normal(meanrepairtv,varrepairtv,STREAM_REPAIR_TV);
+			tiempo_reparando+= tiempo;
+			reparaciones_TV_final++;
+			eventSchedule(simTime +tiempo , EVENT_REPAIR);
 		} else {
 			Server.setBussy();
-			eventSchedule(simTime + normal(meanrepairvcr,varrepairvcr,STREAM_REPAIR_VCR), EVENT_REPAIR);
+			double tiempo = normal(meanrepairvcr,varrepairvcr,STREAM_REPAIR_VCR);
+			tiempo_reparando+= tiempo;
+			reparaciones_VCR_final++;
+			eventSchedule(simTime + tiempo, EVENT_REPAIR);
 		}
 		
 	}
@@ -153,8 +164,9 @@ public class LosBarcos {
 	public static void report() throws IOException {
 		
 		Server.report(writer);
-		
-		
+		writer.write(completeLine(completeHalfLine("*  Numero de Tv  " + reparaciones_TV_final) + "  Numero de VCR  = " + reparaciones_VCR_final)+'\n');
+		writer.write(completeLine(completeHalfLine("*  Tiempo de reparacion  " + tiempo_reparando) )+'\n');
+		queue.report(writer); 
 		
 	}
 	
@@ -172,4 +184,12 @@ public class LosBarcos {
 		return line + "*\n";
 	}
 	
+	public static void initSimlib_b(){
+		reparaciones_pendientes_tv= 2;
+		reparaciones_pendientes_vcr= 2;
+		reparaciones_TV_final=0;
+		reparaciones_VCR_final=0;
+		tiempo_reparando = 0 ;
+		
+	}
 }
