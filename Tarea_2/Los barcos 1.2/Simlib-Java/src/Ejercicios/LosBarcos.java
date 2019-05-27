@@ -61,6 +61,7 @@ public class LosBarcos {
 																							// llegada
 		timing();
 		
+		
 		while (simTime < lengthSimulation) {//Simulacion durante length simulation
 			switch (eventType) {
 			case EVENT_ARRIVAL:

@@ -118,7 +118,7 @@ public class SimLib {
     public static long randgt(int stream) {
         return zrng[stream];
     }
-    
+
     public static float expon(float rmean, int istrm) {
         float u;
         u = rand(istrm);
@@ -158,5 +158,43 @@ public class SimLib {
         for (int i = 1; u >= probDistrib[i]; i++)
             retrn++;
         return retrn;
+    }
+    
+    public static double normal(float mean, float var, int stream) {
+
+      /*  float w;
+        float u1 =rand(stream);;
+        float u2 =rand(stream);;
+
+        float v1= 2*u1-1;
+        float v2= 2*u2-1;
+        w= (v1*v1)+ (v2*v2);
+        while(w>1){
+
+            u1 =u2;
+            u2 =rand(stream);
+           
+            v1= 2*u1-1;
+            v2= 2*u2-1;
+            w= (v1*v1)+ (v2*v2);
+           
+
+        }
+
+        float y = (float) Math.sqrt((-2*Math.log(w))/w);
+        return mean + (var*(v1*y));*/
+    	int i;
+    	double sum = 0.0;
+    	for (i = 0; i < 12; i++) {
+    		sum+= rand(stream);
+		}
+    	return (sum-6.0)*var + mean;
+
+    };
+    public static boolean pro( int stream) {
+    	if(rand(stream)>0.5) {
+    		return true;    		
+    	}
+    	return false;
     }
 }

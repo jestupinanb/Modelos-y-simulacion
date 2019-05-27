@@ -1,0 +1,41 @@
+
+
+Modelo de Tienda de reparaciones de TV y VCR 
+
+Mean Arrival minimo     20.0	maximo	 55.0
+Mean repair TV  45.0	Var repair TV	5.0
+Mean repair VCR  31.0	Var repair VCR	5.0
+Max Attend  8.0
+Number of hours processed 600.0
+
+************************************************************
+
+*  FACILITY STADISTIC Server                               *
+************************************************************
+
+*  Min = 0.0                    Max = 57.671173            *
+
+*  Records = 20                                            *
+
+*  Utilization average = 30.479822                         *
+
+*  Utilization percentage  = 1.0                           *
+
+************************************************************
+
+
+*  Numero de Tv  7              Numero de VCR  = 8         *
+
+*  Tiempo de reparacion  587.84827                         *
+
+************************************************************
+*  QUEUE Cola de los clientes                              *
+************************************************************
+*  Time interval = 0.0 - 609.59644                         *
+*  Incoming = 14                                           *
+*  Outcoming = 14                                          *
+*  Current length = 0                                      *
+*  Maximal length = 4                                      *
+*  Average length = 1.5582553610326697                     *
+************************************************************
+

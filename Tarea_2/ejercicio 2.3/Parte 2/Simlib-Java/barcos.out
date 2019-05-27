@@ -1,0 +1,59 @@
+
+
+Modelo de Tienda de reparaciones de TV y VCR 
+
+Mean Arrival minimo     20.0	maximo	 55.0
+Mean repair TV  45.0	Var repair TV	5.0
+Mean repair VCR  31.0	Var repair VCR	5.0
+Max Attend  8.0
+Number of hours processed 600.0
+
+************************************************************
+
+*  FACILITY STADISTIC Server                               *
+************************************************************
+
+*  Min = 0.0                    Max = 48.734955            *
+
+*  Records = 21                                            *
+
+*  Utilization average = 21.488762                         *
+
+*  Utilization percentage  = 0.0                           *
+
+************************************************************
+
+
+************************************************************
+
+*  FACILITY STADISTIC Server_2                             *
+************************************************************
+
+*  Min = 0.0                    Max = 41.94864             *
+
+*  Records = 13                                            *
+
+*  Utilization average = 13.566305                         *
+
+*  Utilization percentage  = 0.0                           *
+
+************************************************************
+
+
+*  Numero de Tv  6              Numero de VCR  = 11        *
+
+*  Tiempo de reparacion  640.74603                         *
+
+*  Equipos recogidos    0                                  *
+
+************************************************************
+*  QUEUE Cola de los clientes                              *
+************************************************************
+*  Time interval = 0.0 - Infinity                          *
+*  Incoming = 2                                            *
+*  Outcoming = 2                                           *
+*  Current length = 0                                      *
+*  Maximal length = 1                                      *
+*  Average length = NaN                                    *
+************************************************************
+
