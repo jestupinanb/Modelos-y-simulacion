@@ -31,11 +31,26 @@ public class Trenes {
 	static Facility sistema_descarga;
 
 	public static void main(String[] args) throws IOException {
-
+		
+//		queue = new Queue<Tren>("Cola de los trenes");
+//		
+//		Tren t1 = new Tren (1);
+//		Tren t2 = new Tren (2);
+//		
+//		queue.offer(t1);
+//		queue.offer(t2);
+//		
+//		Tren temp = queue.get(1);
+//		
+//		temp.id = 3;
+//		
+//		while(!queue.isEmpty()) {
+//			System.out.println(queue.poll().id);
+//		}
+		
+		
 		queue = new Queue<Tren>("Cola de los trenes");
 		i = 0;
-		
-
 		reader = new SimReader("barcos.in");
 		writer = new SimWriter("barcos.out");
 		pruebas = new SimWriter("pruebas.out");
@@ -60,7 +75,8 @@ public class Trenes {
         );
 		
 		initSimlib();
-
+		
+		eventSchedule(Double.MAX_VALUE, EVENT_ARRIVAL);// Primer elemento de
 		/** Incio de la simulacion **/
 
 		eventSchedule(expon(meanInterarrival, STREAM_INTERARRIVAL), EVENT_ARRIVAL);// Primer elemento de
@@ -68,8 +84,9 @@ public class Trenes {
 		timing();
 		
 
-		while (simTime < 200) {//Simulacion durante length simulation
-			System.out.print("\nnext type   " + eventType + " simtime " + simTime);
+		while (simTime < 20) {//Simulacion durante length simulation
+	///System.out.print("\nnext type   " + eventType + " simtime " + simTime);
+			System.out.println("SIMTIME: " + simTime);
 			switch (eventType) {
 			case EVENT_ARRIVAL:
 				arrival();
@@ -96,33 +113,38 @@ public class Trenes {
 	public static void arrival() {
 		eventSchedule(simTime + expon(meanInterarrival, STREAM_INTERARRIVAL), EVENT_ARRIVAL);
 		Tren tren = new Tren(i);
+		System.out.println("ARRIVAL ID: " + tren.id);
 		
+		/*
 		if(sistema_descarga.isBussy()) {
 			eventSchedule(tren.ini_cambio, EVENT_INI_CAMBIO_TRIPULACION, i);
 			queue.offer(tren);
 		}else {
 			float D = unifrm(minDescarga, maxDescarga, STREAM_DESCARGA);     //D = TIEMPO DE DESCARGA
 			sistema_descarga.setBussy(); 
-			if((tren.ini_cambio-simTime)>=D) { 
+			if(tren.ini_cambio-simTime>=D) { 
 				eventSchedule(simTime+D, EVENT_DESCARGA);
+				tren.tiempo_descarga = D; ////////////////////////////////
 			}else {
-				tren.tiempo_descarga=D-(tren.ini_cambio-simTime);
-				float fin_cambio = unifrm(minCambio, maxCambio, STREAM_CAMBIO_TRIPULACION);
-			 	tren.fin_cambio=tren.ini_cambio + fin_cambio;
-				eventSchedule(tren.fin_cambio,EVENT_DESCARGA);
-				queue.modificar(queue.search(buscarTren(tren.id)), tren);
-				
+				tren.tiempo_descarga= D-(tren.ini_cambio-simTime);
+				eventSchedule(tren.ini_cambio,EVENT_DESCARGA);
 			}
-			
 		}
-		
+		*/
+		queue.offer(tren);
+		eventSchedule(tren.ini_cambio, EVENT_INI_CAMBIO_TRIPULACION, i);
+		System.out.println("INICIO CAMBIO: " + tren.ini_cambio);
+		if(!sistema_descarga.isBussy()) {
+			eventSchedule(simTime,EVENT_DESCARGA);
+		}
 		i++;
 	}
 	
 	public static void ini_cambio_tripulacion(int tren) {
 		
-		Tren t = buscarTren(tren);
 		
+		Tren t = buscarTren(tren);
+		System.out.println("INI_CAMBIO ID: " + t.id);
 		t.sin_Trip=true;
 		t.cambio_trip++;
 		
@@ -130,57 +152,55 @@ public class Trenes {
 		t.fin_cambio=simTime+fin_cambio;
 		eventSchedule(t.fin_cambio, EVENT_FIN_CAMBIO_TRIPULACION, tren);
 		
-		int pos = queue.search(buscarTren(tren));
-		queue.modificar(pos, t);
+		
 	}
 	
 	public static void fin_cambio_tripulacion(int tren) {
-		
 		Tren t = buscarTren(tren);
-		
+		System.out.println("FIN_CAMBIO ID: " + t.id);
 		t.sin_Trip=false;
 		t.ini_cambio=12+simTime;
 		
 		eventSchedule(t.ini_cambio, EVENT_INI_CAMBIO_TRIPULACION, tren);
-		int pos = queue.search(buscarTren(tren));
-		queue.modificar(pos, t);
-		
-		
 	}
 	
 	public static void descarga() {
-		sistema_descarga.setIdle();
 		
-		if(!queue.isEmpty()) {
-			sistema_descarga.setBussy();
+		if(!queue.isEmpty()){
 			Tren tren = queue.peek();
+			
 			if(tren.sin_Trip) {
 				eventSchedule(tren.fin_cambio, EVENT_DESCARGA);
+				System.out.println("DESCARGA SIN TRIP ID: " + tren.id);
+				if(tren.tiempo_descarga>0) {
+					sistema_descarga.setBussy();
+				}
 			}else {
 				if(tren.tiempo_descarga>0) {
-					eventSchedule(simTime+tren.tiempo_descarga,EVENT_DESCARGA);
-					 removeEventType(tren.ini_cambio, EVENT_INI_CAMBIO_TRIPULACION);
+					System.out.println("DESCARGA SALE ID: " + tren.id);
+					eventSchedule(simTime,EVENT_DESCARGA);
+					removeEventType(tren.id);
 					queue.poll();
+					sistema_descarga.setIdle();
 				}else {
 					float D = unifrm(minDescarga, maxDescarga, STREAM_DESCARGA);     //D = TIEMPO DE DESCARGA
 					if(tren.ini_cambio >= simTime+D) {
+						System.out.println("DESCARGA ALCANZA (SE AGENDA PARA SALIR) ID: " + tren.id);
+						sistema_descarga.setBussy();
 						eventSchedule(simTime+D,EVENT_DESCARGA);
 						tren.tiempo_descarga = D;
 					}else {
+						System.out.println("DESCARGA NO ALCANZA (DEBE ENTRAR A DESCARGA SIN TRIP ID: " + tren.id);
 						tren.tiempo_descarga= D-(tren.ini_cambio-simTime);
-						float fin_cambio = unifrm(minCambio, maxCambio, STREAM_CAMBIO_TRIPULACION);
-					 	tren.fin_cambio=tren.ini_cambio + fin_cambio;
-						eventSchedule(tren.fin_cambio,EVENT_DESCARGA);
+						eventSchedule(tren.ini_cambio,EVENT_DESCARGA);
+						System.out.println("SE AGENDO DESCARGA EN: " + tren.ini_cambio);
 					}
-					queue.modificar(queue.search(buscarTren(tren.id)), tren);
-					
 				}
 				
 			}
 		}
 	}
-
-
+	
 	
 	public static Tren buscarTren(int tren) {
 		int id;

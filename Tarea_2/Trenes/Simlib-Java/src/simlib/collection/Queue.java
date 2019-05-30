@@ -84,21 +84,6 @@ public class Queue<E> extends Collection {
         return -1;
     }
     
-    public void modificar (int pos, E data) {
-    	Node node = head;
-    	Node nuevo = new Node(null,data);
-        for(int j =0; j<pos-1; j++)
-        	node = node.next;
-        
-        Node Next =node.next;
-        if (Next!=null)
-        {
-	        if(Next.next!=null) 
-		        nuevo.next=Next.next;
-	        else nuevo.next=null;
-        }
-        node.next =nuevo;
-    }
 
     public E get( int index ){
         if( index >= size )

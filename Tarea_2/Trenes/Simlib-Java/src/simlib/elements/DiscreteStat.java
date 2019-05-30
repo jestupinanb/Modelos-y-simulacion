@@ -19,7 +19,7 @@ public class DiscreteStat {
 	}
 
 	public DiscreteStat(String name) {
-		this(null, name);
+		this(0f, name);
 	}
 
 	public float getSum() {
