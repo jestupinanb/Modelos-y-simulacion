@@ -28,7 +28,7 @@ public class Facility extends DiscreteStat {
 		return this.isBusy == false;
 	}
 
-	public boolean isBussy() {
+	public boolean isBusy() {
 		return this.isBusy != false;
 	}
 
@@ -58,7 +58,7 @@ public class Facility extends DiscreteStat {
 		return getSum()/simTime;
 	}
 	
-	public boolean setBussy() {
+	public boolean setBusy() {
 		try {
 			if (isBusy) {
 				Exception e = new Exception("No se puede ocupar el servidor: "+getName()+", ya que actualmente esta ocupado (Busy). Esto afectaria y dañaria las estadisticas.");
