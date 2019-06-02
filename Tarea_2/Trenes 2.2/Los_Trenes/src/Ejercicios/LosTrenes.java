@@ -99,13 +99,6 @@ public class LosTrenes {
 		server.report(writer);
 		Tren.report(writer);
 		queue.report(writer, simTime);
-//		writer.write("************************************************************\n");
-//		writer.write(completeLine("*  Tiempo de los puertos en general"));
-//		writer.write("************************************************************\n");
-//		writer.write(completeLine(completeHalfLine("*  Min = " + Float.min(grua_1.getMin(), grua_2.getMin()) ) + "  Max = " + Float.max(grua_1.getMax(), grua_2.getMax())));
-//		writer.write(completeLine("*  Records = " + (grua_1.getNumObs()+grua_2.getNumObs())));
-//		writer.write(completeLine("*  Utilization average = " + (grua_1.getSum()+grua_2.getSum())/(grua_1.getNumObs()+grua_2.getNumObs())));
-//		writer.write("************************************************************\n\n");
 
 	}
 
