@@ -58,7 +58,7 @@ public class LosBarcos {
 		/** Incio de la simulacion **/
 
 		eventSchedule(unifrm(minDeparture, maxDeparture, STREAM_INTERARRIVAL), EVENT_ARRIVAL);// Primer elemento de
-																							// llegada
+//		eventSchedule(simTime + 1.25f, EVENT_ARRIVAL);																					// llegada
 		timing();
 		
 		
@@ -84,6 +84,7 @@ public class LosBarcos {
 
 	public static void arrival() {
 		eventSchedule(simTime + expon(meanInterarrival, STREAM_INTERARRIVAL), EVENT_ARRIVAL);
+//		eventSchedule(simTime + 1.25f, EVENT_ARRIVAL);
 		byte gruaDesocupada;
 		if (grua_1.isBusy() && grua_2.isBusy()) {
 			queue.offer(simTime);
@@ -97,18 +98,20 @@ public class LosBarcos {
 					gruaDesocupada = EVENT_DEPARTURE_1;
 					nuevoTiempo(EVENT_DEPARTURE_2, MULTIPLICAR, simTime);
 				}
+				ocuparGruaDesocupada(gruaDesocupada,1f);
+			}else {
+				ocuparGruaDesocupada(gruaDesocupada,1/2f);
 			}
-			ocuparGruaDesocupada(gruaDesocupada);
 		}
 
 	}
-
+	
 	public static void descarge_barco(byte event_departure) {
 		Facility grua = event_departure == EVENT_DEPARTURE_1 ? grua_1 : grua_2;
 		grua.setIdle();
 		if (!queue.isEmpty()) {
 			queue.poll();
-			ocuparGruaDesocupada(event_departure);
+			ocuparGruaDesocupada(event_departure,1f);
 		} else {
 			if (grua_1.isBusy() || grua_2.isBusy()) {
 				if (grua_1.isBusy()) {
@@ -120,13 +123,14 @@ public class LosBarcos {
 		}
 	}
 
-	public static void ocuparGruaDesocupada(byte gruaDesocupada) {
+	public static void ocuparGruaDesocupada(byte gruaDesocupada,float mult) {
 		if (gruaDesocupada == EVENT_DEPARTURE_1) {
 			grua_1.setBusy();
 		} else {
 			grua_2.setBusy();
 		}
-		eventSchedule(simTime + unifrm(minDeparture, maxDeparture, STREAM_DEPARTURE), gruaDesocupada);
+		eventSchedule(simTime + mult*unifrm(minDeparture, maxDeparture, STREAM_DEPARTURE), gruaDesocupada);
+//		eventSchedule(simTime + 1.5f*mult, gruaDesocupada);
 	}
 
 	public static void nuevoTiempo(byte type, boolean operacion, float simTimeActual) {
