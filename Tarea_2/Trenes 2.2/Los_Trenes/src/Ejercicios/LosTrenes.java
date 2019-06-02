@@ -119,7 +119,7 @@ public class LosTrenes {
 	}
 
 	public static void salidaDeTripulacion() {
-		if (server.isBusy() && simTren.getId() == server.lastTrenIdInServer) {
+		if (server.isBusy() && simTren.getId() == server.lastTrenId) {
 			server.unmanned(simTime);
 		}
 		simTren.setSinTripulacion();
@@ -130,7 +130,7 @@ public class LosTrenes {
 
 	public static void llegadaDeTripulacion() {
 
-		if (server.isBusy() && simTren.getId() == server.lastTrenIdInServer) {
+		if (server.isBusy() && simTren.getId() == server.lastTrenId) {
 			server.withCrew(simTime);
 		}
 
@@ -202,7 +202,7 @@ public class LosTrenes {
 	}
 
 	public static class Servidor {
-		private int lastTrenIdInServer;
+		private int lastTrenId;
 		private Facility serverStatus;
 		private float valDescargue;
 		private Tren tren;
@@ -211,14 +211,14 @@ public class LosTrenes {
 		private float lastUpdate;
 
 		public Servidor(String name, boolean isBusy) {
-			this.lastTrenIdInServer = -1;
+			this.lastTrenId = -1;
 			this.serverStatus = new Facility(name, isBusy);
 			this.unmannedTime = 0;
 			this.lastUpdate = 0;
 		}
 
 		public int getlastTrenIdInServer() {
-			return this.lastTrenIdInServer;
+			return this.lastTrenId;
 		}
 
 		public boolean isBusy() {
@@ -230,11 +230,11 @@ public class LosTrenes {
 		}
 
 		public boolean setBusy(float valDescargue, Tren tren) {
-			this.lastTrenIdInServer++;
+			this.lastTrenId++;
 			this.valDescargue = valDescargue;
 			this.tren = tren;
 			try {
-				if (tren.id != lastTrenIdInServer) {
+				if (tren.id != lastTrenId) {
 					Exception e = new Exception("Ha desaparecido un tren. Los trenes deben entrar en orden.");
 					throw e;
 				}
