@@ -1,0 +1,47 @@
+
+
+Modelo de trenes carboneros con un lugar de descarga y "hogging out" 
+
+Mean Arrival   10.0
+Min Descargue  3.5
+Max Descargue  4.5
+Tiempo de trabajo de la triuplacion  12.0
+Min tiempo de trabajo en llegada del tren al sistema  6.0
+Max tiempo de trabajo en llegada del tren al sistema  11.0
+Min tiempo de llegada de una nueva tripulacion  2.5
+Max tiempo de llegada de una nueva tripulacion  3.5
+Number of hours processed 720.0
+
+************************************************************
+*  FACILITY STADISTIC Lugar de descarga.                   *
+************************************************************
+*  Min = 3.503357               Max = 7.061035             *
+*  Utilization average = 4.246776                          *
+*  Porcentaje de tiempo ocupado  = 0.42394978              *
+*  Porcentaje de tiempo libre    = 0.5760502               *
+*  Porcentaje de tiempo sin tripulacion    = 0.02306543    *
+************************************************************
+
+************************************************************
+*  DISCRETE STATISTIC De los Trenes en horas.              *
+************************************************************
+*  Min = 3.5431824              Max = 21.698914            *
+*  Average = 7.124415                                      *
+************************************************************
+
+************************************************************
+*  Proporcion trenes sin tripulacion                       *
+************************************************************
+*  Sin tripulacion 0 veces: 57                             *
+*  Sin tripulacion 1 vez:   14                             *
+*  Sin tripulacion 2 veces: 0                              *
+*  Cantidad de trenes que han salido: 71                   *
+************************************************************
+
+************************************************************
+*  DISCRETE STATISTIC De la cola de los trenes.            *
+************************************************************
+*  Min = 0                      Max = 5                    *
+*  Average = 3.1318297                                     *
+************************************************************
+
