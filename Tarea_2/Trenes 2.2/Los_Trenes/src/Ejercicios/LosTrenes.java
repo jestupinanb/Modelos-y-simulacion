@@ -2,15 +2,9 @@ package Ejercicios;
 
 import static simlib.SimLib.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Comparator;
-
-import com.sun.prism.impl.Disposer.Record;
-
 import simlib.io.*;
 import simlib.elements.*;
-import simlib.SimLib;
 import simlib.collection.*;
 
 public class LosTrenes {
@@ -107,7 +101,7 @@ public class LosTrenes {
 		Tren tren = new Tren(distributionArrivalSalidaTripulacion(), simTime);
 		eventSchedule(tren.getSalidaTripulacion(), EVENT_SALIDA_DE_TRIPULACION, tren);
 		if (!queue.isEmpty() || server.isBusy()) {
-			queue.offer(tren,simTime);
+			queue.offer(tren, simTime);
 		} else {
 			server.setBusy(distributionDescargue(), tren);
 			puedeDescargueTren();
@@ -193,20 +187,20 @@ public class LosTrenes {
 		return unifrm(minLlegadaTripulacion, maxLlegadaTripulacion, STREAM_LLEGADA);
 	}
 
-	public static String completeHalfLine(String line){
-		while (line.length()<30){
+	public static String completeHalfLine(String line) {
+		while (line.length() < 30) {
 			line += " ";
 		}
 		return line;
 	}
-	
-	public static String completeLine(String line){
-		while (line.length()<59){
+
+	public static String completeLine(String line) {
+		while (line.length() < 59) {
 			line += " ";
 		}
 		return line + "*\n";
 	}
-	
+
 	public static class Servidor {
 		private int lastTrenIdInServer;
 		private Facility serverStatus;
@@ -278,12 +272,13 @@ public class LosTrenes {
 
 		public void report(SimWriter out) throws IOException {
 			serverStatus.report(out);
-			out.write(serverStatus.completeLine("*  Porcentaje de tiempo sin tripulacion    = " + unmannedTime/simTime));
+			out.write(serverStatus
+					.completeLine("*  Porcentaje de tiempo sin tripulacion    = " + unmannedTime / simTime));
 			out.write("************************************************************\n\n");
 		}
-		
+
 		public void unmanned(float simTime) {
-			if(lastUpdate>0) {
+			if (lastUpdate > 0) {
 				Exception e = new Exception("LastUpdate deberia ser menor que 0");
 				e.printStackTrace();
 			}
@@ -387,63 +382,61 @@ public class LosTrenes {
 			out.write("************************************************************\n");
 			out.write(completeLine("*  Proporcion trenes sin tripulacion"));
 			out.write("************************************************************\n");
-			out.write(completeLine("*  Sin tripulacion 0 veces: "+unmannedCero));
-			out.write(completeLine("*  Sin tripulacion 1 vez:   "+unmannedOne));
-			out.write(completeLine("*  Sin tripulacion 2 veces: "+unmannedTwo));
-			out.write(completeLine("*  Cantidad de trenes que han salido: "+numDead));
+			out.write(completeLine("*  Sin tripulacion 0 veces: " + unmannedCero));
+			out.write(completeLine("*  Sin tripulacion 1 vez:   " + unmannedOne));
+			out.write(completeLine("*  Sin tripulacion 2 veces: " + unmannedTwo));
+			out.write(completeLine("*  Cantidad de trenes que han salido: " + numDead));
 			out.write("************************************************************\n\n");
 		}
 	}
-	
+
 	public static class QueueStats<E> {
 		private Queue<E> queue;
 		private DiscreteStat stats;
 		private float lastSimTime;
 		private int maxInQueue;
-		
+
 		public QueueStats(String text) {
 			this.queue = new Queue<E>(text);
-			this.stats = new DiscreteStat("De la "+text.toLowerCase()+"."); 
+			this.stats = new DiscreteStat("De la " + text.toLowerCase() + ".");
 		}
-		
-		public void offer(E object,float simTime) {
+
+		public void offer(E object, float simTime) {
 			updateStats(simTime);
 			queue.offer(object);
 		}
-		
+
 		public E poll(float simTime) {
 			updateStats(simTime);
 			return queue.poll();
 		}
-		
+
 		public void updateStats(float simTime) {
-			if(maxInQueue<queue.size()) {
+			if (maxInQueue < queue.size()) {
 				maxInQueue = queue.size();
 			}
-			stats.record((simTime - lastSimTime)*queue.size());
+			stats.record((simTime - lastSimTime) * queue.size());
 			lastSimTime = simTime;
 		}
-		
+
 		public boolean isEmpty() {
 			return queue.isEmpty();
 		}
-		
+
 		public E peek() {
 			return queue.peek();
 		}
-		
-		public void report(SimWriter out,float simTime) throws IOException {
+
+		public void report(SimWriter out, float simTime) throws IOException {
 			updateStats(simTime);
-			
-			
+
 			out.write("************************************************************\n");
-			out.write(this.stats.completeLine("*  DISCRETE STATISTIC "+stats.getName()));
+			out.write(this.stats.completeLine("*  DISCRETE STATISTIC " + stats.getName()));
 			out.write("************************************************************\n");
-			out.write(this.stats.completeLine(completeHalfLine("*  Min = "+0)+"  Max = "+maxInQueue));
-			out.write(this.stats.completeLine("*  Average = "+this.stats.getAverage()));
+			out.write(this.stats.completeLine(completeHalfLine("*  Min = " + 0) + "  Max = " + maxInQueue));
+			out.write(this.stats.completeLine("*  Average = " + this.stats.getAverage()));
 			out.write("************************************************************\n\n");
 		}
-		
-		
+
 	}
 }
