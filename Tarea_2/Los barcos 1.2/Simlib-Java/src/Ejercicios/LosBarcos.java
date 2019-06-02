@@ -58,7 +58,7 @@ public class LosBarcos {
 		/** Incio de la simulacion **/
 
 		eventSchedule(unifrm(minDeparture, maxDeparture, STREAM_INTERARRIVAL), EVENT_ARRIVAL);// Primer elemento de
-//		eventSchedule(simTime + 1.25f, EVENT_ARRIVAL);																					// llegada
+																							  // llegada
 		timing();
 		
 		
@@ -84,7 +84,6 @@ public class LosBarcos {
 
 	public static void arrival() {
 		eventSchedule(simTime + expon(meanInterarrival, STREAM_INTERARRIVAL), EVENT_ARRIVAL);
-//		eventSchedule(simTime + 1.25f, EVENT_ARRIVAL);
 		byte gruaDesocupada;
 		if (grua_1.isBusy() && grua_2.isBusy()) {
 			queue.offer(simTime);
@@ -130,7 +129,6 @@ public class LosBarcos {
 			grua_2.setBusy();
 		}
 		eventSchedule(simTime + mult*unifrm(minDeparture, maxDeparture, STREAM_DEPARTURE), gruaDesocupada);
-//		eventSchedule(simTime + 1.5f*mult, gruaDesocupada);
 	}
 
 	public static void nuevoTiempo(byte type, boolean operacion, float simTimeActual) {
