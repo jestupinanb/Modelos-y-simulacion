@@ -77,9 +77,6 @@ public class LosTrenes {
 				break;
 			}
 			timing();
-			if (simTren != null && simTren.getId() == 39229) {
-				System.out.println("");
-			}
 		}
 
 		report();
